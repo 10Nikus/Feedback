@@ -3,8 +3,8 @@ import Button from "./SidebarButton";
 import RoadmapElement from "./RoadmapElement";
 export default function Sidebar() {
   return (
-    <div className="flex flex-col mx-3 my-3 gap-5 ">
-      <div className="bg-descHeader text-white pt-16 pl-6 pb-6 pr-24">
+    <div className="flex flex-col mx-6 my-3 gap-5 w-80 ">
+      <div className="bg-descHeader text-white pl-5 pb-5 pt-16 pr-10">
         <h1 className="font-bold">Frontend Mentor</h1>
         <h2>Feedback board</h2>
       </div>
@@ -30,7 +30,7 @@ export default function Sidebar() {
             view
           </Link>
         </div>
-        <ul>
+        <ul className="p-3">
           <RoadmapElement color="blue" title="Planned" count={2} />
           <RoadmapElement color="green" title="In-Progress" count={3} />
           <RoadmapElement color="purple" title="Live" count={1} />

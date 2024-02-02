@@ -2,7 +2,7 @@ import HeaderButton from "../Header/HeaderButton";
 
 export default function FeedbackListItem({ feedback }: any) {
   return (
-    <div className="flex justify-around py-2 gap-14 bg-white rounded-lg p-6 m-4">
+    <div className="flex justify-around py-2 gap-20 bg-white rounded-lg p-6 m-4">
       <div className="flex flex-col justify-center items-center bg-slate-200 rounded-md px-4 h-14">
         <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
           <path

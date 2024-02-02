@@ -6,7 +6,7 @@ export default function RoadmapEleme({
   return (
     <li className="flex justify-between">
       <h2>{title}</h2>
-      <p>{count}</p>
+      <p className="font-bold">{count}</p>
     </li>
   );
 }

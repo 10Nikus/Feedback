@@ -5,7 +5,7 @@ const ListData = DATA["productRequests"];
 
 export const FeedbackList = () => {
   return (
-    <div className="flex flex-col align-middle mx-10">
+    <div className="flex flex-col align-middle w-full items-center">
       {ListData.map((feedback) => (
         <FeedbackListItem key={feedback.id} feedback={feedback} />
       ))}

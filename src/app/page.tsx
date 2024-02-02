@@ -4,9 +4,9 @@ import Sidebar from "./components/sidebar/Sidebar";
 
 export default function Home() {
   return (
-    <main className="flex bg-lightPastel">
+    <main className="flex bg-slate-100 px-28 pt-20">
       <Sidebar />
-      <div>
+      <div className="w-full">
         <Header />
         <FeedbackList />
       </div>
