@@ -22,6 +22,11 @@ export default {
         red: "hsla(0, 67%, 53%, 1)",
         tealBlue: "hsla(230, 100%, 91%, 1)",
       },
+      backgroundImage: {
+        descHeader: "url('/desc-background-header.png')",
+        mobHeader: "url('/mob-background-header.png')",
+        tabHeader: "url('/tab-background-header.png')",
+      },
     },
     fontFamily: {
       jost: ["Jost", "sans-serif"],
