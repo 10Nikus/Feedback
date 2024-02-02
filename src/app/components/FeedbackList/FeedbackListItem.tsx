@@ -1,11 +1,8 @@
-import Button from "../sidebar/SidebarButton";
+import HeaderButton from "../Header/HeaderButton";
 
-export default function FeedbackListItem({
-  title,
-  description,
-}: Readonly<{ title: string; description: string }>) {
+export default function FeedbackListItem({ feedback }: any) {
   return (
-    <div className="flex justify-around py-2 gap-14">
+    <div className="flex justify-around py-2 gap-14 bg-white rounded-lg p-6 m-4">
       <div className="flex flex-col justify-center items-center bg-slate-200 rounded-md px-4 h-14">
         <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -16,12 +13,12 @@ export default function FeedbackListItem({
             fillRule="evenodd"
           />
         </svg>
-        <p>10</p>
+        <p>{feedback.upvotes}</p>
       </div>
       <div className="flex flex-col justify-center w-80">
-        <h3 className="font-bold">{title}</h3>
-        <p>{description}</p>
-        <Button>Suggestion</Button>
+        <h3 className="font-bold">{feedback.title}</h3>
+        <p>{feedback.description}</p>
+        <HeaderButton>Suggestion</HeaderButton>
       </div>
       <div className="flex  justify-center items-center">
         <svg width="18" height="16" xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +28,7 @@ export default function FeedbackListItem({
             fillRule="nonzero"
           />
         </svg>
-        <p>100</p>
+        <p>2</p>
       </div>
     </div>
   );

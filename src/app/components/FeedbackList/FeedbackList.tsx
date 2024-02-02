@@ -7,11 +7,7 @@ export const FeedbackList = () => {
   return (
     <div className="flex flex-col align-middle mx-10">
       {ListData.map((feedback) => (
-        <FeedbackListItem
-          key={feedback.id}
-          title={feedback.title}
-          description={feedback.description}
-        />
+        <FeedbackListItem key={feedback.id} feedback={feedback} />
       ))}
     </div>
   );
