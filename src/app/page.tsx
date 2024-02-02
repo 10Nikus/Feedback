@@ -3,7 +3,7 @@ import Sidebar from "./components/sidebar/Sidebar";
 
 export default function Home() {
   return (
-    <main className="grid grid-cols-2 ">
+    <main className="flex text-xs">
       <Sidebar />
       <FeedbackList />
     </main>

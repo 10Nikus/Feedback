@@ -4,12 +4,12 @@ import RoadmapElement from "./RoadmapElement";
 
 export default function Sidebar() {
   return (
-    <>
+    <div className="flex flex-col mx-3">
       <div>
         <h1>Frontend Mentor</h1>
         <h2>Feedback board</h2>
       </div>
-      <div>
+      <div className="flex flex-wrap">
         <Button>All</Button>
         <Button>UI</Button>
         <Button>UX</Button>
@@ -18,7 +18,7 @@ export default function Sidebar() {
         <Button>Feature</Button>
       </div>
       <div>
-        <div className="fkex justify-between">
+        <div className="flex justify-between">
           <h1>Roadmap</h1>
           <Link href="/roadmap">view</Link>
         </div>
@@ -28,6 +28,6 @@ export default function Sidebar() {
           <RoadmapElement color="purple" title="Live" count={1} />
         </ul>
       </div>
-    </>
+    </div>
   );
 }
