@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Button from "./Button";
+import Button from "./SidebarButton";
 import RoadmapElement from "./RoadmapElement";
 
 export default function Sidebar() {
