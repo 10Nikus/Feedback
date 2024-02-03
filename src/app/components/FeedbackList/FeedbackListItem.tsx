@@ -1,4 +1,4 @@
-import HeaderButton from "../Header/HeaderButton";
+import Link from "next/link";
 import UpvoteButton from "./UpvoteButton";
 
 export default function FeedbackListItem({ feedback }: any) {
@@ -9,7 +9,12 @@ export default function FeedbackListItem({ feedback }: any) {
         <div className="flex flex-col justify-center gap-1">
           <h3 className="font-bold">{feedback.title}</h3>
           <p>{feedback.description}</p>
-          <HeaderButton>Suggestion</HeaderButton>
+          <Link
+            href={`/${feedback.id}`}
+            className="bg-slate-200 font-bold text-blue rounded-md px-3 py-2 w-24 text-xs "
+          >
+            Suggestion
+          </Link>
         </div>
       </div>
       <div className="flex  justify-center items-center gap-1">
