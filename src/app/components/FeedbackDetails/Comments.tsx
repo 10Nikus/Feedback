@@ -5,7 +5,11 @@ export default function Comment({ comment }: { comment: any }) {
     <>
       <div
         className={`py-6 flex w-full justify-between ${
-          !comment.replies && "border-b-2 border-gray-300"
+          comment.id
+            ? comment.replies
+              ? null
+              : "border-b-2 border-gray-300"
+            : "border-l-2 border-gray-300"
         }`}
       >
         <Avatar
@@ -21,13 +25,23 @@ export default function Comment({ comment }: { comment: any }) {
             </div>
           </div>
 
-          <div className="w-full">{comment.content}</div>
+          <div className="w-full">
+            <h2>
+              <span className="text-blue">
+                {comment.replyingTo && "@" + comment.replyingTo}
+              </span>
+              {" " + comment.content}
+            </h2>
+          </div>
         </div>
         <h1 className="text-blue">reply</h1>
       </div>
-      {comment.replies?.map((reply: any) => (
-        <Comment key={reply.id} comment={reply} />
-      ))}
+      <div className="p-0 m-0 ml-8">
+        {comment.replies?.map((reply: any) => (
+          <Comment key={reply.user.name + reply.replyingTo} comment={reply} />
+        ))}
+      </div>
+      {comment.replies && <div className="border-b-2 border-gray-300 ml-8" />}
     </>
   );
 }

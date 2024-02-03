@@ -9,10 +9,25 @@ export default function Roadmap() {
         <GoBackBtn color="white" />
         <FeedbuckButton title="+Add Feedback" link="/new" />
       </Navbar>
-      <div className="flex w-full">
-        <div className="bg-white">First</div>
-        <div className="bg-white">Secend</div>
-        <div className="bg-white">Third</div>
+      <div className="flex w-full justify-between">
+        <div>
+          <div>
+            <h1 className="font-bold text-left">Planned (x)</h1>
+            <p>Odeas prioritized for research</p>
+          </div>
+        </div>
+        <div>
+          <div>
+            <h1 className="font-bold text-left">In-Progress (x)</h1>
+            <p>Feqatures currently being developed</p>
+          </div>
+        </div>
+        <div>
+          <div>
+            <h1 className="font-bold text-left">Live(x)</h1>
+            <p>Released features</p>
+          </div>
+        </div>
       </div>
     </main>
   );

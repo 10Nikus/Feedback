@@ -6,6 +6,7 @@ import FeedbackListItem from "../components/FeedbackList/FeedbackListItem";
 import GoBackBtn from "../components/Header/GoBackBtn";
 import Link from "next/link";
 import Comment from "../components/FeedbackDetails/Comments";
+import AddComent from "../components/FeedbackDetails/AddComments";
 
 const ListData = DATA["productRequests"];
 
@@ -24,12 +25,13 @@ export default function Page() {
         </Link>
       </div>
       <FeedbackListItem feedback={item[0]} />
-      <div className="flex  flex-col  py-8 gap-20 bg-white rounded-lg  m-4 w-full px-12">
+      <div className="flex  flex-col  py-8 gap-5 bg-white rounded-lg  m-4 w-full px-12">
         <h1>{item[0].comments?.length} Comments</h1>
         {item[0].comments?.map((comment) => (
           <Comment key={comment.id} comment={comment} />
         ))}
       </div>
+      <AddComent id={+id} />
     </main>
   );
 }
