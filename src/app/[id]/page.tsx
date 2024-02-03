@@ -17,7 +17,7 @@ export default function Page() {
       <div className="flex justify-between m-4  w-full">
         <GoBackBtn color="black" />
         <Link
-          href="/new"
+          href={`${id}/edit`}
           className="bg-lilac text-white rounded-md px-4 py-2 font-bold"
         >
           Edit Feedback
@@ -25,7 +25,7 @@ export default function Page() {
       </div>
       <FeedbackListItem feedback={item[0]} />
       <div className="flex  flex-col  py-8 gap-20 bg-white rounded-lg  m-4 w-full px-12">
-        <h1>X Comments</h1>
+        <h1>{item[0].comments?.length} Comments</h1>
         {item[0].comments?.map((comment) => (
           <Comment key={comment.id} comment={comment} />
         ))}

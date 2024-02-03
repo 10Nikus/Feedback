@@ -25,7 +25,7 @@ export default function FeedbackListItem({ feedback }: any) {
             fillRule="nonzero"
           />
         </svg>
-        <p className="font-bold">2</p>
+        <p className="font-bold">{feedback.comments?.length || 0}</p>
       </div>
     </div>
   );
