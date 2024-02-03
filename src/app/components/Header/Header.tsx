@@ -1,6 +1,9 @@
+import FeedbuckButton from "./FeedbackButton";
+import Navbar from "./Navbar";
+
 export default function Header() {
   return (
-    <div className="flex bg-navyBlue text-white rounded-md  justify-between items-center px-6 py-4 my-4">
+    <Navbar>
       <div className="flex justify-between gap-10">
         <div className="flex justify-center  items-center gap-3">
           <svg width="23" height="24" xmlns="http://www.w3.org/2000/svg">
@@ -26,9 +29,7 @@ export default function Header() {
           </svg>
         </div>
       </div>
-      <button className="flex justify-center items-center bg-lilac text-white rounded-md px-4 py-2 gap-1 font-bold">
-        + Add Feedback
-      </button>
-    </div>
+      <FeedbuckButton />
+    </Navbar>
   );
 }
