@@ -4,9 +4,9 @@ import Sidebar from "./components/sidebar/Sidebar";
 
 export default function Home() {
   return (
-    <main className="flex bg-slate-100 px-36 pt-20">
+    <main className="flex bg-slate-100 px-36 py-20">
       <Sidebar />
-      <div className="w-full">
+      <div className="w-full mx-0">
         <Header />
         <FeedbackList />
       </div>

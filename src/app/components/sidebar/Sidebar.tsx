@@ -25,7 +25,7 @@ export default function Sidebar() {
           <h1 className="font-bold">Roadmap</h1>
           <Link
             href="/roadmap"
-            className="text-lightGrey underline underline-offset-4"
+            className="text-blue underline underline-offset-4"
           >
             view
           </Link>
