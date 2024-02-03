@@ -7,7 +7,7 @@ export default function Roadmap() {
     <main className="px-36 pt-20 bg-slate-100 h-svh">
       <Navbar>
         <GoBackBtn color="white" />
-        <FeedbuckButton />
+        <FeedbuckButton title="+Add Feedback" link="/new" />
       </Navbar>
       <div className="flex w-full">
         <div className="bg-white">First</div>

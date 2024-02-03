@@ -29,7 +29,7 @@ export default function Header() {
           </svg>
         </div>
       </div>
-      <FeedbuckButton />
+      <FeedbuckButton title="+Add Feedback" link="/new" />
     </Navbar>
   );
 }

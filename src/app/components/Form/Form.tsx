@@ -33,7 +33,7 @@ export default function Form() {
       </div>
       <div className="flex justify-end gap-2">
         <CancelBtn />
-        <FeedbuckButton />
+        <FeedbuckButton title="+ Add Feedback" link="/" />
       </div>
     </form>
   );
