@@ -1,7 +1,16 @@
 import Link from "next/link";
 import Button from "./SidebarButton";
 import RoadmapElement from "./RoadmapElement";
-export default function Sidebar() {
+import DATA from "../../data.json";
+
+const ListData = DATA["productRequests"];
+
+export default function Roadmap() {
+  const PLANNED = ListData.filter((item: any) => item.status === "planned");
+  const INPROGRESS = ListData.filter(
+    (item: any) => item.status === "in-progress"
+  );
+  const LIVE = ListData.filter((item: any) => item.status === "live");
   return (
     <div className="flex flex-col mx-6 my-3 gap-5 w-80 ">
       <div className="bg-descHeader text-white pl-4 pb-4 pt-16 pr-10">
@@ -31,9 +40,17 @@ export default function Sidebar() {
           </Link>
         </div>
         <ul className="p-3">
-          <RoadmapElement color="blue" title="Planned" count={2} />
-          <RoadmapElement color="green" title="In-Progress" count={3} />
-          <RoadmapElement color="purple" title="Live" count={1} />
+          <RoadmapElement
+            color="#FF9800"
+            title="Planned"
+            count={PLANNED.length}
+          />
+          <RoadmapElement
+            color="#9C27B0"
+            title="In-Progress"
+            count={INPROGRESS.length}
+          />
+          <RoadmapElement color="#4CAF50" title="Live" count={LIVE.length} />
         </ul>
       </div>
     </div>

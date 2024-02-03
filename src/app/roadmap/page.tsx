@@ -25,18 +25,21 @@ export default function Roadmap() {
           description="Ideas prioritized for research"
           data={PLANNED}
           color="orange"
+          colorHash="#FF9800"
         />
         <RoadmapEl
           title="In-Progress"
           description="Features currently being debeloped"
           data={INPROGRESS}
           color="violet"
+          colorHash="#9C27B0"
         />
         <RoadmapEl
           title="Live"
           description="Released features"
           data={LIVE}
           color="green"
+          colorHash="#4CAF50"
         />
       </div>
     </main>

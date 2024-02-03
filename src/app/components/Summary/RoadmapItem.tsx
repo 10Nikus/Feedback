@@ -11,7 +11,6 @@ export default function RoadmapItem({
   event: any;
   title: string;
 }) {
-  // console.log(color);
   return (
     <div
       className={`bg-white my-10 p-2 border-t-8  border-${color}-600 rounded-xl`}
