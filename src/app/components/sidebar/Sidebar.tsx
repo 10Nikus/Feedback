@@ -4,7 +4,7 @@ import RoadmapElement from "./RoadmapElement";
 export default function Sidebar() {
   return (
     <div className="flex flex-col mx-6 my-3 gap-5 w-80 ">
-      <div className="bg-descHeader text-white pl-5 pb-5 pt-16 pr-10">
+      <div className="bg-descHeader text-white pl-4 pb-4 pt-16 pr-10">
         <h1 className="font-bold">Frontend Mentor</h1>
         <h2>Feedback board</h2>
       </div>

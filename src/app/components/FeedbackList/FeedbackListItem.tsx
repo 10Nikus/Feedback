@@ -2,23 +2,25 @@ import HeaderButton from "../Header/HeaderButton";
 
 export default function FeedbackListItem({ feedback }: any) {
   return (
-    <div className="flex justify-around py-2 gap-20 bg-white rounded-lg p-6 m-4">
-      <div className="flex flex-col justify-center items-center bg-slate-200 rounded-md px-4 h-14">
-        <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M1 6l4-4 4 4"
-            stroke="#4661E6"
-            strokeWidth="2"
-            fill="none"
-            fillRule="evenodd"
-          />
-        </svg>
-        <p>{feedback.upvotes}</p>
-      </div>
-      <div className="flex flex-col justify-center w-80">
-        <h3 className="font-bold">{feedback.title}</h3>
-        <p>{feedback.description}</p>
-        <HeaderButton>Suggestion</HeaderButton>
+    <div className="flex   py-8 gap-20 bg-white rounded-lg  m-4 w-full px-12">
+      <div className="flex gap-12 w-full">
+        <div className="flex flex-col justify-center items-center bg-slate-200 rounded-md px-4 h-14">
+          <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M1 6l4-4 4 4"
+              stroke="#4661E6"
+              strokeWidth="2"
+              fill="none"
+              fillRule="evenodd"
+            />
+          </svg>
+          <p>{feedback.upvotes}</p>
+        </div>
+        <div className="flex flex-col justify-center">
+          <h3 className="font-bold">{feedback.title}</h3>
+          <p>{feedback.description}</p>
+          <HeaderButton>Suggestion</HeaderButton>
+        </div>
       </div>
       <div className="flex  justify-center items-center">
         <svg width="18" height="16" xmlns="http://www.w3.org/2000/svg">
