@@ -1,33 +1,43 @@
 import FeedbuckButton from "../components/Header/FeedbackButton";
 import GoBackBtn from "../components/Header/GoBackBtn";
 import Navbar from "../components/Header/Navbar";
+import DATA from "../data.json";
+import RoadmapEl from "../components/Summary/RoadmapList";
+
+const ListData = DATA["productRequests"];
 
 export default function Roadmap() {
+  const PLANNED = ListData.filter((item: any) => item.status === "planned");
+  const INPROGRESS = ListData.filter(
+    (item: any) => item.status === "in-progress"
+  );
+  const LIVE = ListData.filter((item: any) => item.status === "live");
+
   return (
-    <main className="px-36 pt-20 bg-slate-100 h-svh">
+    <main className="px-36 pt-20 bg-slate-100">
       <Navbar>
         <GoBackBtn color="white" />
         <FeedbuckButton title="+Add Feedback" link="/new" />
       </Navbar>
-      <div className="flex w-full justify-between">
-        <div>
-          <div>
-            <h1 className="font-bold text-left">Planned (x)</h1>
-            <p>Odeas prioritized for research</p>
-          </div>
-        </div>
-        <div>
-          <div>
-            <h1 className="font-bold text-left">In-Progress (x)</h1>
-            <p>Feqatures currently being developed</p>
-          </div>
-        </div>
-        <div>
-          <div>
-            <h1 className="font-bold text-left">Live(x)</h1>
-            <p>Released features</p>
-          </div>
-        </div>
+      <div className="grid grid-cols-3 gap-10">
+        <RoadmapEl
+          title="Planned"
+          description="Ideas prioritized for research"
+          data={PLANNED}
+          color="orange"
+        />
+        <RoadmapEl
+          title="In-Progress"
+          description="Features currently being debeloped"
+          data={INPROGRESS}
+          color="violet"
+        />
+        <RoadmapEl
+          title="Live"
+          description="Released features"
+          data={LIVE}
+          color="green"
+        />
       </div>
     </main>
   );
