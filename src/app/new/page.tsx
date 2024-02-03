@@ -1,5 +1,4 @@
-import Form from "../components/Form/Form";
-import GoBackBtn from "../components/Header/GoBackBtn";
+import Form from "../components/Form/NewForm";
 
 export default function Home() {
   return (
