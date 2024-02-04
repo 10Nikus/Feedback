@@ -7,7 +7,7 @@ import axios from "axios";
 export default function Form() {
   const [data, setData] = useState({
     title: "",
-    category: "",
+    category: "Feature",
     description: "",
   });
 

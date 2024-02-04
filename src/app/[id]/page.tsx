@@ -26,8 +26,8 @@ export default function Page() {
       </div>
       <FeedbackListItem feedback={item[0]} />
       <div className="flex  flex-col  py-8 gap-5 bg-white rounded-lg  m-4 w-full px-12">
-        <h1>{item[0].comments?.length} Comments</h1>
-        {item[0].comments?.map((comment) => (
+        <h1>{item[0]?.comments?.length} Comments</h1>
+        {item[0]?.comments?.map((comment) => (
           <Comment key={comment.id} comment={comment} />
         ))}
       </div>
