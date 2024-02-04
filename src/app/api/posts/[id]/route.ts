@@ -11,12 +11,12 @@ export async function PUT(
   dbConnect();
   const jsonBody = await req.json();
   const {
-    newStatus: status,
+    newCategory: category,
     newTitle: title,
     newDescription: description,
   } = jsonBody;
 
-  await Feedback.findByIdAndUpdate(id, { status, title, description });
+  await Feedback.findByIdAndUpdate(id, { category, title, description });
   return NextResponse.json({ message: "Feedback updated" });
 }
 
