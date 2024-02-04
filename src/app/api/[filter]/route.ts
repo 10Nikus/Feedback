@@ -1,5 +1,5 @@
-import DATA from "../../../data.json";
-
+import DATA from "../../data.json";
+import { NextResponse } from "next/server";
 export function GET({ filter }: { filter?: string }) {
   const feedback = DATA["productRequests"];
   const res = filter
@@ -7,5 +7,5 @@ export function GET({ filter }: { filter?: string }) {
         (item) => item.status === filter || item.category === filter
       )
     : feedback;
-  return Response.json(res);
+  return NextResponse.json(res);
 }
