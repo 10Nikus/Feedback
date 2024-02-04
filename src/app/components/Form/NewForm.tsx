@@ -4,7 +4,6 @@ import { FormEvent, useState } from "react";
 import FeedbuckButton from "../Header/FeedbackButton";
 import CancelBtn from "./CancelBtn";
 import axios from "axios";
-import { redirect } from "next/dist/server/api-utils";
 export default function Form() {
   const [data, setData] = useState({
     title: "",
