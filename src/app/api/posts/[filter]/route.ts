@@ -1,4 +1,4 @@
-import DATA from "../../data.json";
+import DATA from "../../../data.json";
 import { NextResponse } from "next/server";
 
 export function GET({ filter }: { filter?: string }) {
