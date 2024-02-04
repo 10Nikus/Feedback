@@ -1,6 +1,7 @@
 import dbConnect from "@/app/lib/db";
 import { Feedback } from "@/app/models/feedback";
 import { NextResponse } from "next/server";
+import { z } from "zod";
 
 export async function PUT(
   req: Request,
@@ -10,6 +11,17 @@ export async function PUT(
 
   dbConnect();
   const jsonBody = await req.json();
+
+  const schema = z.object({
+    title: z.string().min(3).max(50),
+    description: z.string().min(4).max(250),
+    category: z.enum(["feature", "enhancement", "bug", "ui", "ux"]),
+  });
+
+  if (!schema.safeParse(jsonBody)) {
+    return NextResponse.json(schema.parse(jsonBody), { status: 400 });
+  }
+
   const {
     newCategory: category,
     newTitle: title,
