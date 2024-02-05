@@ -7,7 +7,6 @@ import { useParams, useRouter } from "next/navigation";
 
 export default function Form() {
   const { id } = useParams();
-  console.log(id);
 
   const router = useRouter();
   const [data, setData] = useState({
@@ -19,10 +18,7 @@ export default function Form() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/posts/65bfd5729e364313890d8cde`,
-          { cache: "no-store" }
-        );
+        const response = await fetch(`http://localhost:3000/api/posts/${id}`);
         const result = await response.json();
         setData((prev) => ({
           ...prev,
@@ -53,24 +49,23 @@ export default function Form() {
     e.preventDefault();
 
     if (!data.newTitle || !data.newDescription) return;
-    console.log(data);
 
-    // try {
-    //   const res = await fetch("api/posts", {
-    //     method: "PUT",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
+    try {
+      const res = await fetch("/api/posts/" + id, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    //     if (!res.ok)
-    //       throw new Error("An error occurred while submitting the form");
+      if (!res.ok)
+        throw new Error("An error occurred while submitting the form");
 
-    //     router.push(`../`);
-    //   } catch (error) {
-    //     console.error("Error submitting form", error);
-    //   }
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Error submitting form", error);
+    }
   }
 
   return (
@@ -80,7 +75,7 @@ export default function Form() {
         <h1 className="font-bold">Feedback Title</h1>
         <p>Add a short, descriptive headline</p>
         <input
-          name="title"
+          name="newTitle"
           type="text"
           className="bg-slate-200 w-full px-1 py-2 rounded-md"
           value={data.newTitle}
@@ -91,6 +86,7 @@ export default function Form() {
         <h1 className="font-bold">Category</h1>
         <p>Choose a category for your feedback</p>
         <select
+          name="newCategory"
           className="bg-slate-200 w-full py-2 px-1 rounded-md"
           value={data.newCategory}
           onChange={handleChange}
@@ -108,7 +104,7 @@ export default function Form() {
           Include any specific comments on what should be improved, added, etc.
         </p>
         <textarea
-          name="description"
+          name="newDescription"
           className="bg-slate-200 w-full px-1 py-2 rounded-md"
           value={data.newDescription}
           onChange={handleChange}
