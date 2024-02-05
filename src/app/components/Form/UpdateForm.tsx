@@ -3,29 +3,32 @@
 import { useEffect, useState } from "react";
 import FeedbuckButton from "../Header/FeedbackButton";
 import CancelBtn from "./CancelBtn";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 export default function Form() {
   const { id } = useParams();
+  console.log(id);
 
+  const router = useRouter();
   const [data, setData] = useState({
-    title: "",
-    category: "",
-    description: "",
+    newTitle: "",
+    newCategory: "",
+    newDescription: "",
   });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/posts/65bfd5729e364313890d8cde`
+          `http://localhost:3000/api/posts/65bfd5729e364313890d8cde`,
+          { cache: "no-store" }
         );
         const result = await response.json();
         setData((prev) => ({
           ...prev,
-          title: result.feedback.title,
-          category: result.feedback.category,
-          description: result.feedback.description,
+          newTitle: result.feedback.title,
+          newCategory: result.feedback.category,
+          newDescription: result.feedback.description,
         }));
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -46,31 +49,32 @@ export default function Form() {
     });
   }
 
-  // async function onSubmit(e: FormEvent) {
-  //   e.preventDefault();
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
 
-  //   if (!data.title || !data.description) return;
+    if (!data.newTitle || !data.newDescription) return;
+    console.log(data);
 
-  //   try {
-  //     const res = await fetch("api/posts", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(data),
-  //     });
+    // try {
+    //   const res = await fetch("api/posts", {
+    //     method: "PUT",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
 
-  //     if (!res.ok)
-  //       throw new Error("An error occurred while submitting the form");
+    //     if (!res.ok)
+    //       throw new Error("An error occurred while submitting the form");
 
-  //     router.push("/");
-  //   } catch (error) {
-  //     console.error("Error submitting form", error);
-  //   }
-  // }
+    //     router.push(`../`);
+    //   } catch (error) {
+    //     console.error("Error submitting form", error);
+    //   }
+  }
 
   return (
-    <form className="bg-white p-10  flex flex-col gap-8">
+    <form className="bg-white p-10  flex flex-col gap-8" onSubmit={onSubmit}>
       <h1 className="font-bold text-5xl">Update your Feedback</h1>
       <div>
         <h1 className="font-bold">Feedback Title</h1>
@@ -79,7 +83,7 @@ export default function Form() {
           name="title"
           type="text"
           className="bg-slate-200 w-full px-1 py-2 rounded-md"
-          value={data.title}
+          value={data.newTitle}
           onChange={handleChange}
         />
       </div>
@@ -88,7 +92,7 @@ export default function Form() {
         <p>Choose a category for your feedback</p>
         <select
           className="bg-slate-200 w-full py-2 px-1 rounded-md"
-          value={data.category}
+          value={data.newCategory}
           onChange={handleChange}
         >
           <option value="feature">Feature</option>
@@ -106,7 +110,7 @@ export default function Form() {
         <textarea
           name="description"
           className="bg-slate-200 w-full px-1 py-2 rounded-md"
-          value={data.description}
+          value={data.newDescription}
           onChange={handleChange}
         />
       </div>
