@@ -1,15 +1,56 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FeedbuckButton from "../Header/FeedbackButton";
+import { v4 as uuidv4 } from "uuid";
 
-export default function AddComent({ id }: { id: number }) {
+export default function AddComent({
+  id,
+  comments,
+}: {
+  id: any;
+  comments: any;
+}) {
   const [comment, setComment] = useState("");
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setComment(e.target.value);
   }
 
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    if (!comment) return;
+    const newComment = {
+      id: uuidv4(),
+      content: comment,
+      user: {
+        image: "./assets/user-images/image-zena.jpg",
+        name: "Zena Kelley",
+        username: "velvetround",
+      },
+      replies: [],
+    };
+
+    const data = [...comments, newComment];
+
+    try {
+      const res = await fetch("/api/comment/" + id, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ newComments: data }),
+      });
+
+      if (!res.ok)
+        throw new Error("An error occurred while submitting the form");
+
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Error submitting form", error);
+    }
+  }
   return (
     <div className="bg-white m-4 px-12 rounded-md w-full pt-12 pb-6">
       <h1 className="font-bold text-2xl pb-4">Add Comment</h1>
@@ -23,7 +64,8 @@ export default function AddComent({ id }: { id: number }) {
       />
       <div className="flex justify-between mt-6">
         <p>{250 - comment.length} Words Left</p>
-        <FeedbuckButton title="Add Comment" link={`/${id}/edit`} />
+        <button onClick={handleSubmit}>Add Comment</button>
+        {/* <FeedbuckButton title="Add Comment" link={`/${id}/edit`} /> */}
       </div>
     </div>
   );

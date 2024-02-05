@@ -50,7 +50,7 @@ export default function Page() {
           <Comment key={`${id}${index}`} comment={comment} />
         ))}
       </div>
-      <AddComent id={+id} />
+      <AddComent id={id} comments={item?.comments} />
     </main>
   );
 }

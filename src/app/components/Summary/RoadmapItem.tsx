@@ -1,7 +1,6 @@
 import Link from "next/link";
 import CommentAmount from "../FeedbackList/CommentAmount";
 import UpvoteButton from "../FeedbackList/UpvoteButton";
-import HeaderButton from "../Header/HeaderButton";
 
 export default function RoadmapItem({
   color,

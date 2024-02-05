@@ -12,6 +12,6 @@ export async function PUT(
   const jsonBody = await req.json();
   const { newComments: comments } = jsonBody;
 
-  await Feedback.findByIdAndUpdate(id, { comments });
+  await Feedback.findByIdAndUpdate(id, { comments: comments });
   return NextResponse.json({ message: "Added comment" });
 }
