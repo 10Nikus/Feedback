@@ -61,8 +61,23 @@ export default function Form() {
 
       if (!res.ok)
         throw new Error("An error occurred while submitting the form");
+      router.push(`/${id}`);
+    } catch (error) {
+      console.error("Error submitting form", error);
+    }
+  }
 
-      window.location.href = "/";
+  async function handleDelete() {
+    try {
+      const res = await fetch("/api/posts/" + id, {
+        method: "DELETE",
+      });
+
+      if (!res.ok)
+        throw new Error("An error occurred while submitting the form");
+
+      // window.location.href = "/";
+      router.push(`/`);
     } catch (error) {
       console.error("Error submitting form", error);
     }
@@ -113,6 +128,9 @@ export default function Form() {
       <div className="flex justify-end gap-2">
         <CancelBtn />
         {/* <FeedbuckButton title="Update Feedback" link="/" /> */}
+        <button type="button" onClick={handleDelete}>
+          delete
+        </button>
         <button
           type="submit"
           className="bg-cyan-500 text-white px-5 py-2 rounded-md"

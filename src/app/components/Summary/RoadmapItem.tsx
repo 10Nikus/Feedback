@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CommentAmount from "../FeedbackList/CommentAmount";
 import UpvoteButton from "../FeedbackList/UpvoteButton";
 import HeaderButton from "../Header/HeaderButton";
@@ -18,9 +19,14 @@ export default function RoadmapItem({
       <p>{title}</p>
       <h1 className="font-bold my-1">{event.title}</h1>
       <p>{event.description}</p>
-      <HeaderButton>Feature</HeaderButton>
+      <Link
+        href={`/${event?._id}`}
+        className="bg-slate-200 font-bold text-blue rounded-md px-3 py-2 w-24 text-xs "
+      >
+        Suggestion
+      </Link>
       <div className="flex justify-between px-2">
-        <UpvoteButton>{event.upvotes}</UpvoteButton>
+        <UpvoteButton>{event.upVotes}</UpvoteButton>
         <CommentAmount amount={event.comments?.length || 0} />
       </div>
     </div>
