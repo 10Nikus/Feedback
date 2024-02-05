@@ -10,8 +10,7 @@ import { useEffect, useState } from "react";
 
 interface FeedbackItem {
   id: number;
-  // Add other properties as needed
-  comments: Comment[]; // Assuming comments is an array of Comment type
+  comments: Comment[];
 }
 
 export default function Page() {

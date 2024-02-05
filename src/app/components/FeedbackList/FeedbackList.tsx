@@ -1,16 +1,27 @@
-"use client";
-
-import { useState } from "react";
-import DATA from "@/app/data.json";
 import FeedbackListItem from "./FeedbackListItem";
 
-const ListData = DATA["productRequests"];
+async function GetFeedback() {
+  try {
+    const res = await fetch("http://localhost:3000/api/posts", {
+      cache: "no-store",
+    });
 
-export const FeedbackList = ({ posts }: any) => {
+    if (!res.ok) {
+      throw new Error("Failed to fetch posts");
+    }
+    return res.json();
+  } catch (error) {
+    console.log("Error loading feedback", error);
+  }
+}
+
+export const FeedbackList = async () => {
+  const { feedback } = await GetFeedback();
+
   return (
     <div className="flex flex-col align-middle w-full items-center">
-      {posts.map((feedback: any) => (
-        <FeedbackListItem key={feedback._id} feedback={feedback} />
+      {feedback.map((f: any) => (
+        <FeedbackListItem key={f._id} feedback={f} />
       ))}
     </div>
   );
