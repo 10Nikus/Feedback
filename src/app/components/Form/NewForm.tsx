@@ -3,13 +3,16 @@
 import { FormEvent, useState } from "react";
 import FeedbuckButton from "../Header/FeedbackButton";
 import CancelBtn from "./CancelBtn";
-import axios from "axios";
+import { useRouter } from "next/navigation";
+
 export default function Form() {
   const [data, setData] = useState({
     title: "",
     category: "Feature",
     description: "",
   });
+
+  const router = useRouter();
 
   function handleChange(
     e: React.ChangeEvent<
@@ -22,14 +25,27 @@ export default function Form() {
     });
   }
 
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
-    axios
-      .post("/api/add", data)
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
+
+    if (!data.title || !data.description) return;
+
+    try {
+      const res = await fetch("api/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       });
+
+      if (!res.ok)
+        throw new Error("An error occurred while submitting the form");
+
+      router.push("/");
+    } catch (error) {
+      console.error("Error submitting form", error);
+    }
   }
 
   return (
