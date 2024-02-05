@@ -7,6 +7,7 @@ import Link from "next/link";
 import Comment from "../components/FeedbackDetails/Comments";
 import AddComent from "../components/FeedbackDetails/AddComments";
 import { useEffect, useState } from "react";
+import ReplyToComment from "../components/FeedbackDetails/ReplyToComment";
 
 interface FeedbackItem {
   id: number;
@@ -16,6 +17,7 @@ interface FeedbackItem {
 export default function Page() {
   const { id } = useParams();
   const [item, setData] = useState<FeedbackItem | null>(null);
+  const [replyingTo, setReplyingTo] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,8 +49,16 @@ export default function Page() {
       <div className="flex  flex-col  py-8 gap-5 bg-white rounded-lg  m-4 w-full px-12">
         <h1>{item?.comments?.length} Comments</h1>
         {item?.comments?.map((comment, index) => (
-          <Comment key={`${id}${index}`} comment={comment} />
+          <Comment
+            key={`${id}${index}`}
+            comment={comment}
+            setReplying={setReplyingTo}
+          />
         ))}
+
+        {replyingTo && (
+          <ReplyToComment replyintTo={replyingTo} setReplying={setReplyingTo} />
+        )}
       </div>
       <AddComent id={id} comments={item?.comments} />
     </main>

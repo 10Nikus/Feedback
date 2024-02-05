@@ -37,21 +37,21 @@ export default async function Roadmap() {
           title="Planned"
           description="Ideas prioritized for research"
           data={PLANNED}
-          color="orange"
+          color="border-orange-600"
           colorHash="#FF9800"
         />
         <RoadmapEl
           title="In-Progress"
           description="Features currently being debeloped"
           data={INPROGRESS}
-          color="violet"
+          color="border-violet-600"
           colorHash="#9C27B0"
         />
         <RoadmapEl
           title="Live"
           description="Released features"
           data={LIVE}
-          color="green"
+          color="border-green-600"
           colorHash="#4CAF50"
         />
       </div>

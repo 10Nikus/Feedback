@@ -1,6 +1,13 @@
 import Avatar from "@mui/material/Avatar";
+import Reply from "./Reply";
 
-export default function Comment({ comment }: { comment: any }) {
+export default function Comment({
+  comment,
+  setReplying,
+}: {
+  comment: any;
+  setReplying: Function;
+}) {
   return (
     <>
       <div
@@ -34,11 +41,16 @@ export default function Comment({ comment }: { comment: any }) {
             </h2>
           </div>
         </div>
-        <h1 className="text-blue">reply</h1>
+        <h1
+          className="text-blue"
+          onClick={() => setReplying(comment.user.username)}
+        >
+          reply
+        </h1>
       </div>
       <div className="p-0 m-0 ml-8">
         {comment.replies?.map((reply: any) => (
-          <Comment key={reply.user.name + reply.replyingTo} comment={reply} />
+          <Reply key={reply.id} reply={reply} />
         ))}
       </div>
       {comment.replies && <div className="border-b-2 border-gray-300 ml-8" />}
