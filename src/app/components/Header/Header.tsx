@@ -43,7 +43,7 @@ export default function Header() {
             <option className="bg-navyBlue my-2" value="Most UpVotes">
               Most UpVotes
             </option>
-            <option className="bg-navyBlue my-2" value="Least upVotes">
+            <option className="bg-navyBlue my-2" value="Least UpVotes">
               Least UpVotes
             </option>
           </select>
