@@ -1,14 +1,17 @@
 "use client";
 
-import { useState } from "react";
 import FeedbuckButton from "./FeedbackButton";
 import Navbar from "./Navbar";
+import { setSort } from "../../lib/features/sort/sortSlice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function Header() {
-  const [filter, setFilter] = useState("Most Comments");
+  const dispatch = useDispatch();
+  const sort = useSelector((state: any) => state.sortSlice.status);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilter(e.target.value);
+    dispatch(setSort(e.target.value));
   };
 
   return (
@@ -27,7 +30,7 @@ export default function Header() {
         <div className="flex gap-1 items-center">
           <h2>Sort by:</h2>
           <select
-            value={filter}
+            value={sort}
             onChange={handleChange}
             className="border-0 bg-transparent p-0 outline-0 appearance-none"
           >

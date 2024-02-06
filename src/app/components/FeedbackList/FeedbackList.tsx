@@ -1,22 +1,14 @@
+"use client";
+
+import { useSelector } from "react-redux";
 import FeedbackListItem from "./FeedbackListItem";
 
-async function GetFeedback() {
-  try {
-    const res = await fetch("http://localhost:3000/api/posts", {
-      cache: "no-store",
-    });
+export const FeedbackList = ({ feedback }: { feedback: any }) => {
+  const filter = useSelector((state: any) => state.filterSlice.status);
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch posts");
-    }
-    return res.json();
-  } catch (error) {
-    console.log("Error loading feedback", error);
+  if (filter !== "all") {
+    feedback = feedback.filter((f: any) => f.category === filter);
   }
-}
-
-export const FeedbackList = async () => {
-  const { feedback } = await GetFeedback();
 
   return (
     <div className="flex flex-col align-middle w-full items-center">
