@@ -1,7 +1,16 @@
+"use client";
+
+import { useState } from "react";
 import FeedbuckButton from "./FeedbackButton";
 import Navbar from "./Navbar";
 
 export default function Header() {
+  const [filter, setFilter] = useState("Most Comments");
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilter(e.target.value);
+  };
+
   return (
     <Navbar>
       <div className="flex justify-between gap-10">
@@ -17,7 +26,25 @@ export default function Header() {
         </div>
         <div className="flex gap-1 items-center">
           <h2>Sort by:</h2>
-          <p className="font-bold">Most Upvotes</p>
+          <select
+            value={filter}
+            onChange={handleChange}
+            className="border-0 bg-transparent p-0 outline-0 appearance-none"
+          >
+            <option className="bg-navyBlue my-2 " value="Most Comments">
+              Most Comments
+            </option>
+            <option className="bg-navyBlue my-2" value="Least Comments">
+              Least Comments
+            </option>
+            <option className="bg-navyBlue my-2" value="Most UpVotes">
+              Most UpVotes
+            </option>
+            <option className="bg-navyBlue my-2" value="Least upVotes">
+              Least UpVotes
+            </option>
+          </select>
+
           <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M1 1l4 4 4-4"

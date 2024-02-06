@@ -1,9 +1,13 @@
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function CancelBtn() {
+  const router = useRouter();
   return (
-    <Link href="../" className="bg-slate-200 px-4 py-2 rounded-md">
+    <button
+      className="bg-slate-200 text-white px-4 py-2 rounded-md"
+      onClick={() => router.back()}
+    >
       Cancel
-    </Link>
+    </button>
   );
 }

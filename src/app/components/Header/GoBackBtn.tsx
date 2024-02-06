@@ -1,8 +1,14 @@
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function GoBackBtn({ color }: { color: string }) {
+  const router = useRouter();
+
   return (
-    <Link href="../" className="flex justify-center items-center gap-1">
+    <button
+      onClick={() => router.back()}
+      className="flex justify-center items-center gap-1"
+    >
       <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M6 9L2 5l4-4"
@@ -13,6 +19,6 @@ export default function GoBackBtn({ color }: { color: string }) {
         />
       </svg>
       Go Back
-    </Link>
+    </button>
   );
 }

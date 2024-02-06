@@ -61,7 +61,7 @@ export default function Form() {
 
       if (!res.ok)
         throw new Error("An error occurred while submitting the form");
-      router.push(`/${id}`);
+      router.back();
     } catch (error) {
       console.error("Error submitting form", error);
     }
@@ -76,8 +76,7 @@ export default function Form() {
       if (!res.ok)
         throw new Error("An error occurred while submitting the form");
 
-      // window.location.href = "/";
-      router.push(`/`);
+      router.push("/");
     } catch (error) {
       console.error("Error submitting form", error);
     }

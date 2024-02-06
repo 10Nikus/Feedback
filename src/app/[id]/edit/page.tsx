@@ -36,7 +36,7 @@ export default function Edit() {
           />
         </g>
       </svg>
-      <Form id={+id} />
+      <Form />
     </main>
   );
 }
