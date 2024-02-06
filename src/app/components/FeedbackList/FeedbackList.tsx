@@ -1,13 +1,21 @@
 "use client";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import FeedbackListItem from "./FeedbackListItem";
+import { setNumber } from "@/app/lib/features/slice/feedbuckNumberSlice";
+import { useEffect } from "react";
 
 export const FeedbackList = ({ feedback }: { feedback: any }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setNumber(feedback.length));
+  }, [feedback]);
+
   const filter = useSelector((state: any) => state.filterSlice.status);
   const sort = useSelector((state: any) => state.sortSlice.status);
 
-  if (filter !== "all") {
+  if (filter) {
     feedback = feedback.filter((f: any) => f.category === filter);
   }
 

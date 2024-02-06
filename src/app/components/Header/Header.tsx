@@ -2,13 +2,14 @@
 
 import FeedbuckButton from "./FeedbackButton";
 import Navbar from "./Navbar";
-import { setSort } from "../../lib/features/sort/sortSlice";
+import { setSort } from "../../lib/features/slice/sortSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 export default function Header() {
   const dispatch = useDispatch();
   const sort = useSelector((state: any) => state.sortSlice.status);
+  const number = useSelector((state: any) => state.numberSlice.status);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setSort(e.target.value));
@@ -25,7 +26,9 @@ export default function Header() {
               fillRule="nonzero"
             />
           </svg>
-          <h1 className="font-bold">0 Suggestions</h1>
+          <h1 className="font-bold">
+            {number === 0 ? null : number} Suggestions
+          </h1>
         </div>
         <div className="flex gap-1 items-center">
           <h2>Sort by:</h2>

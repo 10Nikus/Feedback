@@ -1,6 +1,6 @@
 "use client";
 
-import { setFilter } from "@/app/lib/features/filter/filterSlice";
+import { setFilter } from "@/app/lib/features/slice/filterSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
@@ -9,10 +9,10 @@ export default function Button({ children }: Readonly<{ children: string }>) {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    if (filter !== children.toLowerCase()) {
+    if (filter !== children.toLowerCase() && children !== "All") {
       dispatch(setFilter(children.toLowerCase()));
     } else {
-      dispatch(setFilter("all"));
+      dispatch(setFilter(""));
     }
   };
 
