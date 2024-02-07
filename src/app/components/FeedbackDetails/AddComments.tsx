@@ -65,7 +65,6 @@ export default function AddComent({
       <div className="flex justify-between mt-6">
         <p>{250 - comment.length} Words Left</p>
         <button onClick={handleSubmit}>Add Comment</button>
-        {/* <FeedbuckButton title="Add Comment" link={`/${id}/edit`} /> */}
       </div>
     </div>
   );

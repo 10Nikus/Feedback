@@ -57,7 +57,12 @@ export default function Page() {
         ))}
 
         {replyingTo && (
-          <ReplyToComment replyintTo={replyingTo} setReplying={setReplyingTo} />
+          <ReplyToComment
+            index={id}
+            comments={item?.comments}
+            replyintTo={replyingTo}
+            setReplying={setReplyingTo}
+          />
         )}
       </div>
       <AddComent id={id} comments={item?.comments} />

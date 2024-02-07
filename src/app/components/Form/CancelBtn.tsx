@@ -5,7 +5,7 @@ export default function CancelBtn() {
   return (
     <button
       className="bg-slate-200 text-white px-4 py-2 rounded-md"
-      onClick={() => router.back()}
+      onClick={() => router.replace("../")}
     >
       Cancel
     </button>
