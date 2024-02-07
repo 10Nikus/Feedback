@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import FeedbuckButton from "../Header/FeedbackButton";
 import CancelBtn from "./CancelBtn";
 import { useRouter } from "next/navigation";
 
@@ -42,7 +41,7 @@ export default function Form() {
       if (!res.ok)
         throw new Error("An error occurred while submitting the form");
 
-      router.back();
+      router.replace("/");
     } catch (error) {
       console.error("Error submitting form", error);
     }

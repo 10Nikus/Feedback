@@ -1,10 +1,13 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import { FeedbackList } from "./components/FeedbackList/FeedbackList";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/sidebar/Sidebar";
-import { GetFeedback } from "./hooks/UseGetFeedback";
+import { useGetFeedback } from "./hooks/UseGetFeedback";
 
 export default async function Home() {
-  const { feedback } = await GetFeedback();
+  const { feedback } = await useGetFeedback();
 
   return (
     <main className="flex bg-slate-100 px-36 py-20">

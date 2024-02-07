@@ -1,16 +1,16 @@
 import Link from "next/link";
 import Button from "./SidebarButton";
 import RoadmapElement from "./RoadmapElement";
-import DATA from "../../data.json";
+import { useGetFeedback } from "@/app/hooks/UseGetFeedback";
 
-const ListData = DATA["productRequests"];
+export default async function Roadmap() {
+  const { feedback } = await useGetFeedback();
 
-export default function Roadmap() {
-  const PLANNED = ListData.filter((item: any) => item.status === "planned");
-  const INPROGRESS = ListData.filter(
+  const PLANNED = feedback.filter((item: any) => item.status === "planned");
+  const INPROGRESS = feedback.filter(
     (item: any) => item.status === "in-progress"
   );
-  const LIVE = ListData.filter((item: any) => item.status === "live");
+  const LIVE = feedback.filter((item: any) => item.status === "live");
   return (
     <div className="flex flex-col mx-6 my-3 gap-5 w-80 ">
       <div className="bg-descHeader text-white pl-4 pb-4 pt-16 pr-10">
