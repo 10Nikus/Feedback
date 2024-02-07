@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import FeedbuckButton from "../Header/FeedbackButton";
 import { v4 as uuidv4 } from "uuid";
+import { useRouter } from "next/navigation";
 
 export default function AddComent({
   id,
@@ -12,6 +13,7 @@ export default function AddComent({
   comments: any;
 }) {
   const [comment, setComment] = useState("");
+  const router = useRouter();
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setComment(e.target.value);
@@ -43,10 +45,12 @@ export default function AddComent({
         body: JSON.stringify({ newComments: data }),
       });
 
-      if (!res.ok)
+      if (!res.ok) {
         throw new Error("An error occurred while submitting the form");
-
-      window.location.href = "/";
+      }
+      comments.push(newComment);
+      router.refresh()
+      setComment("");
     } catch (error) {
       console.error("Error submitting form", error);
     }

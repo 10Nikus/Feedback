@@ -62,6 +62,7 @@ export default function Form() {
       if (!res.ok)
         throw new Error("An error occurred while submitting the form");
       router.back();
+      router.refresh();
     } catch (error) {
       console.error("Error submitting form", error);
     }
@@ -77,6 +78,7 @@ export default function Form() {
         throw new Error("An error occurred while submitting the form");
 
       router.replace("/");
+      router.refresh();
     } catch (error) {
       console.error("Error submitting form", error);
     }
@@ -126,7 +128,7 @@ export default function Form() {
       </div>
       <div className="flex justify-end gap-2">
         <CancelBtn />
-        {/* <FeedbuckButton title="Update Feedback" link="/" /> */}
+
         <button type="button" onClick={handleDelete}>
           delete
         </button>

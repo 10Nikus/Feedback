@@ -1,3 +1,8 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
+// Code to reply to a comment
 export default function ReplyToComment({
   replyintTo,
   setReplying,
@@ -7,18 +12,25 @@ export default function ReplyToComment({
   replyintTo: string;
   setReplying: Function;
   index: any;
-  comments: {
-    content: string;
-    replyingTo: string;
-    index: string;
-    user: {
-      image: string;
-      name: string;
-      username: string;
-    };
-    replies: [any];
-  };
+  comments:
+    | [
+        {
+          content: string;
+          replyingTo: string;
+          index: string;
+          user: {
+            image: string;
+            name: string;
+            username: string;
+          };
+          replies: [any];
+        }
+      ]
+    | []
+    | any;
 }) {
+  const router = useRouter();
+
   async function handleSubmit() {
     const area = document.querySelector("textarea");
     const content = area?.value;
@@ -34,9 +46,12 @@ export default function ReplyToComment({
       },
     };
     const id = comments?.findIndex(
-      (comment) => comment.user.username === replyintTo
+      (comment: any) => comment.user.username === replyintTo
     );
-    comments[id].replies.push(data);
+
+    !comments[id].replies
+      ? (comments[id].replies = [data])
+      : comments[id].replies.push(data);
 
     try {
       const res = await fetch("/api/comment/" + index, {
@@ -50,7 +65,9 @@ export default function ReplyToComment({
       if (!res.ok)
         throw new Error("An error occurred while submitting the form");
 
-      window.location.href = "/";
+
+      setReplying(null);
+      router.refresh();
     } catch (error) {
       console.error("Error submitting form", error);
     }

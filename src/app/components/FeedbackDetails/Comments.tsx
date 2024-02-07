@@ -49,8 +49,8 @@ export default function Comment({
         </h1>
       </div>
       <div className="p-0 m-0 ml-8">
-        {comment.replies?.map((reply: any) => (
-          <Reply key={reply.id} reply={reply} />
+        {comment.replies?.map((reply: any, index: number) => (
+          <Reply key={index} reply={reply} />
         ))}
       </div>
       {comment.replies && <div className="border-b-2 border-gray-300 ml-8" />}

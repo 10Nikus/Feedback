@@ -30,7 +30,6 @@ export default function Reply({ reply }: { reply: any }) {
             </h2>
           </div>
         </div>
-        <h1 className="text-blue">reply</h1>
       </div>
     </>
   );

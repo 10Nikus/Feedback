@@ -42,6 +42,7 @@ export default function Form() {
         throw new Error("An error occurred while submitting the form");
 
       router.replace("/");
+      router.refresh();
     } catch (error) {
       console.error("Error submitting form", error);
     }
