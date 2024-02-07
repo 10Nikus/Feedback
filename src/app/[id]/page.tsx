@@ -6,33 +6,14 @@ import GoBackBtn from "../components/Header/GoBackBtn";
 import Link from "next/link";
 import Comment from "../components/FeedbackDetails/Comments";
 import AddComent from "../components/FeedbackDetails/AddComments";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReplyToComment from "../components/FeedbackDetails/ReplyToComment";
-
-interface FeedbackItem {
-  id: number;
-  comments: Comment[];
-}
+import useFetch, { loading } from "../hooks/UseFetch";
 
 export default function Page() {
   const { id } = useParams();
-  const [item, setData] = useState<FeedbackItem | null>(null);
-  const [replyingTo, setReplyingTo] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`api/posts/${id}`);
-        const result = await response.json();
-
-        setData(result.feedback);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, [id]);
+  const { data, loading, error }: loading = useFetch(`api/posts/${id}`);
+  const [replyingTo, setReplyingTo] = useState(null);
 
   return (
     <main className="bg-slate-100 px-36 py-20">
@@ -45,27 +26,31 @@ export default function Page() {
           Edit Feedback
         </Link>
       </div>
-      <FeedbackListItem feedback={item} />
-      <div className="flex  flex-col  py-8 gap-5 bg-white rounded-lg  m-4 w-full px-12">
-        <h1>{item?.comments?.length} Comments</h1>
-        {item?.comments?.map((comment, index) => (
-          <Comment
-            key={`${id}${index}`}
-            comment={comment}
-            setReplying={setReplyingTo}
-          />
-        ))}
+      {data && (
+        <>
+          <FeedbackListItem feedback={data.feedback} />
+          <div className="flex  flex-col  py-8 gap-5 bg-white rounded-lg  m-4 w-full px-12">
+            <h1>{data.feedback.comments?.length} Comments</h1>
+            {data.feedback.comments?.map((comment, index) => (
+              <Comment
+                key={`${id}${index}`}
+                comment={comment}
+                setReplying={setReplyingTo}
+              />
+            ))}
 
-        {replyingTo && (
-          <ReplyToComment
-            index={id}
-            comments={item?.comments}
-            replyintTo={replyingTo}
-            setReplying={setReplyingTo}
-          />
-        )}
-      </div>
-      <AddComent id={id} comments={item?.comments} />
+            {replyingTo && (
+              <ReplyToComment
+                index={id}
+                comments={data.feedback.comments}
+                replyintTo={replyingTo}
+                setReplying={setReplyingTo}
+              />
+            )}
+          </div>
+          <AddComent id={id} comments={data.feedback.comments} />
+        </>
+      )}
     </main>
   );
 }

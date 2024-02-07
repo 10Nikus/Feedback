@@ -1,10 +1,6 @@
-"use client";
-
 import Form from "@/app/components/Form/UpdateForm";
-import { useParams } from "next/navigation";
 
 export default function Edit() {
-  const { id } = useParams();
   return (
     <main className="bg-slate-100 flex flex-col items-center px-44 h-svh">
       <svg
