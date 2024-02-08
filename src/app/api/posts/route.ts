@@ -20,15 +20,15 @@ export async function POST(req: Request) {
     comments: [],
   };
 
-  // const schema = z.object({
-  //   title: z.string().min(3).max(50),
-  //   description: z.string().min(4).max(250),
-  //   category: z.enum(["feature", "enhancement", "bug", "ui", "ux"]),
-  // });
+  const schema = z.object({
+    title: z.string().min(3).max(50),
+    description: z.string().min(4).max(250),
+    category: z.enum(["feature", "enhancement", "bug", "ui", "ux"]),
+  });
 
-  // if (!schema.safeParse(jsonBody)) {
-  //   return NextResponse.json(schema.parse(jsonBody), { status: 400 });
-  // }
+  if (!schema.safeParse(jsonBody)) {
+    return NextResponse.json(schema.parse(jsonBody), { status: 400 });
+  }
 
   dbConnect();
   Feedback.create(data);

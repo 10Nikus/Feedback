@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import FeedbuckButton from "../Header/FeedbackButton";
 import CancelBtn from "./CancelBtn";
 import { useParams, useRouter } from "next/navigation";
+import useEditPost from "@/app/hooks/UseAddReply";
 
 export default function Form() {
-  const { id } = useParams();
-
+  const { id }: { id: string } = useParams();
+  const { editPost, loading, error } = useEditPost(id);
   const router = useRouter();
   const [data, setData] = useState({
     newTitle: "",
@@ -15,6 +15,7 @@ export default function Form() {
     newDescription: "",
   });
 
+  // Fetch data from the server
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,6 +35,7 @@ export default function Form() {
     fetchData();
   }, [id]);
 
+  // Update the state when the input changes
   function handleChange(
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -43,29 +45,6 @@ export default function Form() {
       ...data,
       [e.target.name]: e.target.value,
     });
-  }
-
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-
-    if (!data.newTitle || !data.newDescription) return;
-
-    try {
-      const res = await fetch("/api/posts/" + id, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!res.ok)
-        throw new Error("An error occurred while submitting the form");
-      router.back();
-      router.refresh();
-    } catch (error) {
-      console.error("Error submitting form", error);
-    }
   }
 
   async function handleDelete() {
@@ -84,8 +63,14 @@ export default function Form() {
     }
   }
 
+  async function handleSubmit() {
+    await editPost(data);
+    router.replace(`/${id}`);
+    router.refresh();
+  }
+
   return (
-    <form className="bg-white p-10  flex flex-col gap-8" onSubmit={onSubmit}>
+    <div className="bg-white p-10  flex flex-col gap-8">
       <h1 className="font-bold text-5xl">Update your Feedback</h1>
       <div>
         <h1 className="font-bold">Feedback Title</h1>
@@ -133,12 +118,12 @@ export default function Form() {
           delete
         </button>
         <button
-          type="submit"
+          onClick={handleSubmit}
           className="bg-cyan-500 text-white px-5 py-2 rounded-md"
         >
           Update Feedback
         </button>
       </div>
-    </form>
+    </div>
   );
 }
