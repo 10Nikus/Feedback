@@ -9,7 +9,7 @@ import useFetchEdit from "@/app/hooks/UseFetchEdit";
 
 export default function Form() {
   const { id }: { id: string } = useParams();
-  const { editPost, loading, error } = useEditPost(id);
+  const { editPost } = useEditPost(id);
   const { deletePost } = useDeletePost();
   const { getData } = useFetchEdit();
   const router = useRouter();

@@ -1,16 +1,29 @@
+"use client";
+
 import Link from "next/link";
 import Button from "./SidebarButton";
 import RoadmapElement from "./RoadmapElement";
 import { useGetFeedback } from "@/app/hooks/UseGetFeedback";
+import useFetch, { loading } from "@/app/hooks/UseFetch";
+import { useEffect } from "react";
 
-export default async function Roadmap() {
-  const { feedback } = await useGetFeedback();
+export default function Roadmap() {
+  const { data, loading, error }: loading = useFetch(`api/posts/`);
 
-  const PLANNED = feedback.filter((item: any) => item.status === "planned");
-  const INPROGRESS = feedback.filter(
-    (item: any) => item.status === "in-progress"
-  );
-  const LIVE = feedback.filter((item: any) => item.status === "live");
+  let PLANNED: any = [];
+  let INPROGRESS: any = [];
+  let LIVE: any = [];
+
+  useEffect(() => {
+    if (data) {
+      const feedback = Object.values(data);
+      PLANNED = feedback.filter((item: any) => item.status === "planned");
+      INPROGRESS = feedback.filter(
+        (item: any) => item.status === "in-progress"
+      );
+      LIVE = feedback.filter((item: any) => item.status === "live");
+    }
+  }, [data]);
 
   return (
     <div className="flex flex-col mx-6 my-3 gap-5 w-80 ">
