@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import FeedbuckButton from "../Header/FeedbackButton";
-import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/navigation";
+import UseAddComment from "@/app/hooks/UseAddComment";
 
 export default function AddComent({
   id,
@@ -12,6 +12,7 @@ export default function AddComent({
   id: any;
   comments: any;
 }) {
+  const { postData, loading, error } = UseAddComment(comments, id);
   const [comment, setComment] = useState("");
   const router = useRouter();
 
@@ -19,41 +20,11 @@ export default function AddComent({
     setComment(e.target.value);
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  async function handleSubmit() {
+    await postData(comment);
 
-    if (!comment) return;
-    const newComment = {
-      id: uuidv4(),
-      content: comment,
-      user: {
-        image: "./assets/user-images/image-zena.jpg",
-        name: "Zena Kelley",
-        username: "velvetround",
-      },
-      replies: [],
-    };
-
-    const data = [...comments, newComment];
-
-    try {
-      const res = await fetch("/api/comment/" + id, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ newComments: data }),
-      });
-
-      if (!res.ok) {
-        throw new Error("An error occurred while submitting the form");
-      }
-      comments.push(newComment);
-      router.refresh()
-      setComment("");
-    } catch (error) {
-      console.error("Error submitting form", error);
-    }
+    router.refresh();
+    setComment("");
   }
   return (
     <div className="bg-white m-4 px-12 rounded-md w-full pt-12 pb-6">
