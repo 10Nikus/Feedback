@@ -3,8 +3,10 @@
 import { FormEvent, useState } from "react";
 import CancelBtn from "./CancelBtn";
 import { useRouter } from "next/navigation";
+import useAddPost from "@/app/hooks/UseAddPost";
 
 export default function Form() {
+  const { addPost, loading, error } = useAddPost();
   const [data, setData] = useState({
     title: "",
     category: "Feature",
@@ -24,32 +26,14 @@ export default function Form() {
     });
   }
 
-  async function onSubmit(e: FormEvent) {
-    e.preventDefault();
-
+  async function handleSubmit() {
     if (!data.title || !data.description) return;
-
-    try {
-      const res = await fetch("api/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!res.ok)
-        throw new Error("An error occurred while submitting the form");
-
-      router.replace("/");
-      router.refresh();
-    } catch (error) {
-      console.error("Error submitting form", error);
-    }
+    await addPost(data);
+    router.push("/");
   }
 
   return (
-    <form className="bg-white p-10  flex flex-col gap-8" onSubmit={onSubmit}>
+    <div className="bg-white p-10  flex flex-col gap-8" onSubmit={handleSubmit}>
       <h1 className="font-bold text-5xl">Give Feedback</h1>
       <div>
         <h1 className="font-bold">Feedback Title</h1>
@@ -92,11 +76,13 @@ export default function Form() {
       </div>
       <div className="flex justify-end gap-2">
         <CancelBtn />
-        <button className="bg-slate-200 px-4 py-2 rounded-md" type="submit">
+        <button
+          className="bg-slate-200 px-4 py-2 rounded-md"
+          onClick={handleSubmit}
+        >
           Add Feedback
         </button>
-        {/* <FeedbuckButton title="+ Add Feedback" link="/" /> */}
       </div>
-    </form>
+    </div>
   );
 }

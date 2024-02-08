@@ -21,6 +21,7 @@ export default function AddComent({
   }
 
   async function handleSubmit() {
+    if (!comment) return;
     await postData(comment);
 
     router.refresh();
