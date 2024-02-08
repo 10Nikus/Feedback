@@ -5,11 +5,13 @@ import CancelBtn from "./CancelBtn";
 import { useParams, useRouter } from "next/navigation";
 import useEditPost from "@/app/hooks/UseAddReply";
 import useDeletePost from "@/app/hooks/UseDelete";
+import useFetchEdit from "@/app/hooks/UseFetchEdit";
 
 export default function Form() {
   const { id }: { id: string } = useParams();
   const { editPost, loading, error } = useEditPost(id);
   const { deletePost } = useDeletePost();
+  const { getData } = useFetchEdit();
   const router = useRouter();
   const [data, setData] = useState({
     newTitle: "",
@@ -20,18 +22,13 @@ export default function Form() {
   // Fetch data from the server
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/api/posts/${id}`);
-        const result = await response.json();
-        setData((prev) => ({
-          ...prev,
-          newTitle: result.feedback.title,
-          newCategory: result.feedback.category,
-          newDescription: result.feedback.description,
-        }));
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+      const data = await getData(id);
+      setData((prev) => ({
+        ...prev,
+        newTitle: data.feedback.title,
+        newCategory: data.feedback.category,
+        newDescription: data.feedback.description,
+      }));
     };
 
     fetchData();
