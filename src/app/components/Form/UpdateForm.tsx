@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import CancelBtn from "./CancelBtn";
 import { useParams, useRouter } from "next/navigation";
 import useEditPost from "@/app/hooks/UseAddReply";
+import useDeletePost from "@/app/hooks/UseDelete";
 
 export default function Form() {
   const { id }: { id: string } = useParams();
   const { editPost, loading, error } = useEditPost(id);
+  const { deletePost } = useDeletePost();
   const router = useRouter();
   const [data, setData] = useState({
     newTitle: "",
@@ -48,19 +50,9 @@ export default function Form() {
   }
 
   async function handleDelete() {
-    try {
-      const res = await fetch("/api/posts/" + id, {
-        method: "DELETE",
-      });
-
-      if (!res.ok)
-        throw new Error("An error occurred while submitting the form");
-
-      router.replace("/");
-      router.refresh();
-    } catch (error) {
-      console.error("Error submitting form", error);
-    }
+    await deletePost(id);
+    router.replace("/");
+    router.refresh();
   }
 
   async function handleSubmit() {
