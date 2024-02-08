@@ -1,14 +1,19 @@
-export default function useGetNumber(data: any) {
-  if (!data) return { PLANNED: [], INPROGRESS: [], LIVE: [] };
-  console.log(data.feedback);
+export default function useFilter() {
+  function filterData(
+    data: Array<any>,
+    filter: string,
+    property: "status" | "category"
+  ) {
+    if (!data) return [];
+    if (property === "category") {
+      const res = data.filter((item: any) => item.category === filter);
 
-  const PLANNED = data.feedback.filter(
-    (item: any) => item.status === "planned"
-  );
-  const INPROGRESS = data.feedback.filter(
-    (item: any) => item.status === "in-progress"
-  );
-  const LIVE = data.feedback.filter((item: any) => item.status === "live");
+      return res;
+    } else {
+      const res = data.filter((item: any) => item.status === filter);
 
-  return { PLANNED, INPROGRESS, LIVE };
+      return res;
+    }
+  }
+  return filterData;
 }

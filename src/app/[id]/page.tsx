@@ -13,6 +13,7 @@ import useFetch, { loading } from "../hooks/UseFetch";
 export default function Page() {
   const { id } = useParams();
   const { data, loading, error }: loading = useFetch(`api/posts/${id}`);
+
   const [replyingTo, setReplyingTo] = useState(null);
 
   return (

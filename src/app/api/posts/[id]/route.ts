@@ -50,5 +50,5 @@ export async function GET(
   dbConnect();
   const feedback = await Feedback.findOne({ _id: id });
 
-  return NextResponse.json({ feedback });
+  return NextResponse.json( feedback );
 }

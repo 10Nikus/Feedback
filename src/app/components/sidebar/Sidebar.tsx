@@ -3,25 +3,35 @@
 import Link from "next/link";
 import Button from "./SidebarButton";
 import RoadmapElement from "./RoadmapElement";
-import { useGetFeedback } from "@/app/hooks/UseGetFeedback";
-import useFetch, { loading } from "@/app/hooks/UseFetch";
-import { useEffect } from "react";
+import useFetch from "@/app/hooks/UseFetch";
+import { useEffect, useState } from "react";
+import UseFilter from "@/app/hooks/UseFilter";
 
 export default function Roadmap() {
-  const { data, loading, error }: loading = useFetch(`api/posts/`);
+  const filterData = UseFilter();
+  const { data } = useFetch(`api/posts/`);
+  const [feedbacks, setFeedbacks] = useState<any>([]);
 
-  let PLANNED: any = [];
-  let INPROGRESS: any = [];
-  let LIVE: any = [];
+  const [numData, setNumData] = useState<{
+    PLANNED: any;
+    INPROGRESS: any;
+    LIVE: any;
+  }>({
+    PLANNED: [],
+    INPROGRESS: [],
+    LIVE: [],
+  });
+
+  useEffect(() => {
+    setFeedbacks(data);
+  }, [data]);
 
   useEffect(() => {
     if (data) {
-      const feedback = Object.values(data);
-      PLANNED = feedback.filter((item: any) => item.status === "planned");
-      INPROGRESS = feedback.filter(
-        (item: any) => item.status === "in-progress"
-      );
-      LIVE = feedback.filter((item: any) => item.status === "live");
+      const PLANNED = filterData(feedbacks, "planned", "status");
+      const INPROGRESS = filterData(feedbacks, "in-progress", "status");
+      const LIVE = filterData(feedbacks, "live", "status");
+      setNumData({ PLANNED, INPROGRESS, LIVE });
     }
   }, [data]);
 
@@ -57,14 +67,18 @@ export default function Roadmap() {
           <RoadmapElement
             color="#FF9800"
             title="Planned"
-            count={PLANNED.length}
+            count={numData.PLANNED.length}
           />
           <RoadmapElement
             color="#9C27B0"
             title="InProgress"
-            count={INPROGRESS.length}
+            count={numData.INPROGRESS.length}
           />
-          <RoadmapElement color="#4CAF50" title="Live" count={LIVE.length} />
+          <RoadmapElement
+            color="#4CAF50"
+            title="Live"
+            count={numData.LIVE.length}
+          />
         </ul>
       </div>
     </div>

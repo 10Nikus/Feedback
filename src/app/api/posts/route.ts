@@ -38,5 +38,5 @@ export async function POST(req: Request) {
 export async function GET() {
   dbConnect();
   const feedback = await Feedback.find();
-  return NextResponse.json({ feedback });
+  return NextResponse.json(feedback);
 }
