@@ -13,6 +13,7 @@ export default function Form() {
   const { deletePost } = useDeletePost();
   const { getData } = useFetchEdit();
   const router = useRouter();
+  const [feedback, setFeedback] = useState<any>([{}]);
   const [data, setData] = useState({
     newTitle: "",
     newCategory: "",
@@ -25,9 +26,9 @@ export default function Form() {
       const data = await getData(id);
       setData((prev) => ({
         ...prev,
-        newTitle: data.feedback.title,
-        newCategory: data.feedback.category,
-        newDescription: data.feedback.description,
+        newTitle: data.title,
+        newCategory: data.category,
+        newDescription: data.description,
       }));
     };
 
