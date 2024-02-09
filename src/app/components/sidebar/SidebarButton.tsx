@@ -9,10 +9,10 @@ export default function Button({ children }: Readonly<{ children: string }>) {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    if (filter !== children.toLowerCase() && children !== "All") {
+    if (filter !== children.toLowerCase()) {
       dispatch(setFilter(children.toLowerCase()));
     } else {
-      dispatch(setFilter(""));
+      dispatch(setFilter("all"));
     }
   };
 
