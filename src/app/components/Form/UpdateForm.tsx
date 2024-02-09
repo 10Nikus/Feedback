@@ -13,7 +13,6 @@ export default function Form() {
   const { deletePost } = useDeletePost();
   const { getData } = useFetchEdit();
   const router = useRouter();
-  const [feedback, setFeedback] = useState<any>([{}]);
   const [data, setData] = useState({
     newTitle: "",
     newCategory: "",

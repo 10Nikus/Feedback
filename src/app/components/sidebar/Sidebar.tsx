@@ -27,13 +27,13 @@ export default function Roadmap() {
   }, [data]);
 
   useEffect(() => {
-    if (data) {
+    if (feedbacks) {
       const PLANNED = filterData(feedbacks, "planned", "status");
       const INPROGRESS = filterData(feedbacks, "in-progress", "status");
       const LIVE = filterData(feedbacks, "live", "status");
       setNumData({ PLANNED, INPROGRESS, LIVE });
     }
-  }, [data]);
+  }, [feedbacks]);
 
   return (
     <div className="flex flex-col mx-6 my-3 gap-5 w-80 ">

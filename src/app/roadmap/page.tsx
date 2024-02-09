@@ -1,5 +1,6 @@
 "use client";
 
+import { useDispatch } from "react-redux";
 import FeedbuckButton from "../components/Header/FeedbackButton";
 import GoBackBtn from "../components/Header/GoBackBtn";
 import Navbar from "../components/Header/Navbar";
@@ -12,6 +13,7 @@ export default function Roadmap() {
   const filterData = UseFilter();
   const { data } = useFetch(`api/posts/`);
   const [feedbacks, setFeedbacks] = useState<any>([]);
+  const dispatch = useDispatch();
 
   const [numData, setNumData] = useState<{
     PLANNED: any;
@@ -35,6 +37,7 @@ export default function Roadmap() {
       setNumData({ PLANNED, INPROGRESS, LIVE });
     }
   }, [data]);
+
   return (
     <main className="px-36 pt-20 bg-slate-100">
       <Navbar>

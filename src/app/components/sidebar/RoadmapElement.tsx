@@ -1,10 +1,8 @@
-import { useSelector } from "react-redux";
-
 export default function RoadmapEleme({
   color,
   title,
   count,
-}: Readonly<{ color: string; title: string, count:number }>) {
+}: Readonly<{ color: string; title: string; count: number }>) {
   return (
     <li className="flex justify-between ">
       <div className="flex items-center">
