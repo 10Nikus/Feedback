@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 import useFetch from "@/app/hooks/UseFetch";
 import useFilter from "@/app/hooks/UseFilter";
 import UseSort from "@/app/hooks/UseSort";
+import { useRouter } from "next/navigation";
 
 export const FeedbackList = () => {
   const { data } = useFetch(`api/posts/`);
   const [feedbacks, setFeedbacks] = useState<any>([]);
 
+  const router = useRouter();
   const sortData = UseSort();
   const filterData = useFilter();
 
@@ -18,12 +20,11 @@ export const FeedbackList = () => {
   const sort = useSelector((state: any) => state.sortSlice.status);
 
   useEffect(() => {
-    async function makeData() {
-      const filteredData = await filterData(data, filter, "category");
-      const sortedData = await sortData(filteredData, sort);
-      setFeedbacks(sortedData);
-    }
-
+    function makeData() {}
+    const filteredData = filterData(data, filter, "category");
+    const sortedData = sortData(filteredData, sort);
+    setFeedbacks(sortedData);
+    router.refresh();
     makeData();
   }, [data, filter, sort]);
 
