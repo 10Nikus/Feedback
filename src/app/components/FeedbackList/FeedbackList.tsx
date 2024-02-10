@@ -8,9 +8,10 @@ import useFilter from "@/app/hooks/UseFilter";
 import UseSort from "@/app/hooks/UseSort";
 import { useRouter } from "next/navigation";
 import { setNumber } from "@/app/lib/features/slice/feedbuckNumberSlice";
+import FeedbackItemListSkeleton from "../skeleton/FeedbackItemListSkeleton";
 
 export const FeedbackList = () => {
-  const { data } = useFetch(`api/posts/`);
+  const { data, loading } = useFetch(`api/posts/`);
   const [feedbacks, setFeedbacks] = useState<any>([]);
 
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ export const FeedbackList = () => {
 
   return (
     <div className="flex flex-col align-middle w-full items-center min-h-svh">
+      {loading && <FeedbackItemListSkeleton />}
       {feedbacks &&
         feedbacks.map((f: any) => (
           <FeedbackListItem key={f._id} feedback={f} />

@@ -8,10 +8,11 @@ import RoadmapEl from "../components/Summary/RoadmapList";
 import useFetch from "../hooks/UseFetch";
 import UseFilter from "../hooks/UseFilter";
 import { useEffect, useState } from "react";
+import RoadmapSkeleton from "../components/skeleton/RoadmapSkeleton";
 
 export default function Roadmap() {
   const filterData = UseFilter();
-  const { data } = useFetch(`api/posts/`);
+  const { data, loading } = useFetch(`api/posts/`);
   const [feedbacks, setFeedbacks] = useState<any>([]);
   const dispatch = useDispatch();
 
@@ -45,6 +46,10 @@ export default function Roadmap() {
         <FeedbuckButton title="+Add Feedback" link="/new" />
       </Navbar>
       <div className="grid grid-cols-3 gap-10">
+        {loading && <RoadmapSkeleton />}
+        {loading && <RoadmapSkeleton />}
+        {loading && <RoadmapSkeleton />}
+
         <RoadmapEl
           title="Planned"
           description="Ideas prioritized for research"

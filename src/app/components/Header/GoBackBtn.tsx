@@ -6,7 +6,7 @@ export default function GoBackBtn({ color }: { color: string }) {
 
   return (
     <button
-      onClick={() => router.replace("/")}
+      onClick={() => router.back()}
       className="flex justify-center items-center gap-1"
     >
       <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">

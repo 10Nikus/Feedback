@@ -8,11 +8,12 @@ import Comment from "../components/FeedbackDetails/Comments";
 import AddComent from "../components/FeedbackDetails/AddComments";
 import { useEffect, useState } from "react";
 import ReplyToComment from "../components/FeedbackDetails/ReplyToComment";
-import useFetch, { loading } from "../hooks/UseFetch";
+import useFetch from "../hooks/UseFetch";
+import FeedbackItemDetailsSkeleton from "../components/skeleton/FeedbackItemDetailsSkeleton";
 
 export default function Page() {
   const { id } = useParams();
-  const { data } = useFetch(`api/posts/${id}`);
+  const { data, loading } = useFetch(`api/posts/${id}`);
   const [replyingTo, setReplyingTo] = useState(null);
   const [feedback, setFeedback] = useState<any>([]);
 
@@ -33,6 +34,7 @@ export default function Page() {
           Edit Feedback
         </Link>
       </div>
+      {loading && <FeedbackItemDetailsSkeleton />}
       {data && (
         <>
           <FeedbackListItem feedback={data} />
