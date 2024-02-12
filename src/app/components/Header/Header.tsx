@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import FeedbuckButton from "./FeedbackButton";
 import Navbar from "./Navbar";
 import { setSort } from "../../lib/features/slice/sortSlice";
@@ -32,24 +33,24 @@ export default function Header() {
         </div>
         <div className="flex gap-1 items-center w-fit mr-1">
           <h2>Sort by:</h2>
-          <select
+          <motion.select
             value={sort}
             onChange={handleChange}
             className="border-0 bg-transparent p-0 outline-0 appearance-none"
           >
-            <option className="bg-navyBlue my-2 " value="Most Comments">
+            <motion.option className="bg-navyBlue my-2 " value="Most Comments">
               Most Comments
-            </option>
-            <option className="bg-navyBlue my-2" value="Least Comments">
+            </motion.option>
+            <motion.option className="bg-navyBlue my-2" value="Least Comments">
               Least Comments
-            </option>
-            <option className="bg-navyBlue my-2" value="Most UpVotes">
+            </motion.option>
+            <motion.option className="bg-navyBlue my-2" value="Most UpVotes">
               Most UpVotes
-            </option>
-            <option className="bg-navyBlue my-2" value="Least UpVotes">
+            </motion.option>
+            <motion.option className="bg-navyBlue my-2" value="Least UpVotes">
               Least UpVotes
-            </option>
-          </select>
+            </motion.option>
+          </motion.select>
 
           <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
             <path

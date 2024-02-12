@@ -24,8 +24,8 @@ export default function Page() {
   }, [data]);
 
   return (
-    <main className="bg-slate-100 px-36 py-20">
-      <div className="flex justify-between m-4  w-full">
+    <main className="bg-slate-100 px-4 md:px-20 lg:px-36 py-20">
+      <div className="flex justify-between m-4 w-full">
         <GoBackBtn color="black" />
         <Link
           href={`${id}/edit`}
@@ -37,7 +37,7 @@ export default function Page() {
       {loading && <FeedbackItemDetailsSkeleton />}
       {data && (
         <>
-          <FeedbackListItem feedback={data} />
+          <FeedbackListItem feedback={data} isDetail={true} />
           <div className="flex  flex-col  py-8 gap-5 bg-white rounded-lg  m-4 w-full px-12">
             <h1>{feedback.comments?.length} Comments</h1>
             {feedback.comments?.map((comment: any, index: number) => (

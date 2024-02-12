@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export default function UpvoteButton({
   children,
   rotation = "col",
@@ -6,7 +8,9 @@ export default function UpvoteButton({
   rotation: "row" | "col";
 }) {
   return (
-    <div
+    <motion.div
+      whileHover={{ scale: 1.2 }}
+      transition={{ type: "spring", stiffness: 500, mass: 0.5 }}
       className={`flex flex-${rotation} gap-1 justify-center items-center bg-slate-200 rounded-md px-4 ${
         rotation === "col"
           ? "h-16 w-12"
@@ -23,6 +27,6 @@ export default function UpvoteButton({
         />
       </svg>
       <p>{children}</p>
-    </div>
+    </motion.div>
   );
 }

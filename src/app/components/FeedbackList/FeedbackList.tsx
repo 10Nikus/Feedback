@@ -43,7 +43,7 @@ export const FeedbackList = () => {
       {loading && <FeedbackItemListSkeleton />}
       {feedbacks &&
         feedbacks.map((f: any) => (
-          <FeedbackListItem key={f._id} feedback={f} />
+          <FeedbackListItem key={f._id} feedback={f} isDetail={false} />
         ))}
     </div>
   );
