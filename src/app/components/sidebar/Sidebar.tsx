@@ -36,8 +36,8 @@ export default function Roadmap() {
   }, [feedbacks]);
 
   return (
-    <div className="flex flex-col mx-6 my-3 gap-5 w-80 ">
-      <div className="bg-descHeader text-white pl-4 pb-4 pt-16 pr-10">
+    <div className="flex flex-row justify-between  md:justify-normal md:flex-col md:mx-6 my-3 md:gap-5 w-full md:w-80 ">
+      <div className="bg-descHeader text-white pl-4 pb-4 pt-6 md:pt-12 lg:pt-14 pr-10">
         <h1 className="font-bold">Frontend Mentor</h1>
         <h2>Feedback board</h2>
       </div>
