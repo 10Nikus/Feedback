@@ -8,7 +8,9 @@ export default function UpvoteButton({
   return (
     <div
       className={`flex flex-${rotation} gap-1 justify-center items-center bg-slate-200 rounded-md px-4 ${
-        rotation === "col" ? "h-16 w-12" : "h-12 w-18 my-4"
+        rotation === "col"
+          ? "h-16 w-12"
+          : "h-8 md:h-12 w-18 my-4 px-0.5 py-0 md:px-2"
       } hover:bg-blue hover:text-slate-200`}
     >
       <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">

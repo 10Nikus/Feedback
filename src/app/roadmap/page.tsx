@@ -40,37 +40,44 @@ export default function Roadmap() {
   }, [data]);
 
   return (
-    <main className="px-36 pt-20 md:px-24 bg-slate-100 sm:bg-blue md:bg-orange-500 lg:bg-red xl:bg-green-700">
+    <main className="min-h-svh  p-0 sm:px-8 lg:px-36 pt-2 sm:pt-10 lg:pt-20  md:px-24 bg-slate-100">
       <Navbar>
         <GoBackBtn color="white" />
         <FeedbuckButton title="+Add Feedback" link="/new" />
       </Navbar>
-      <div className="grid grid-cols-3 gap-10">
-        {loading && <RoadmapSkeleton />}
-        {loading && <RoadmapSkeleton />}
-        {loading && <RoadmapSkeleton />}
-
-        <RoadmapEl
-          title="Planned"
-          description="Ideas prioritized for research"
-          data={numData.PLANNED}
-          color="border-orange-600"
-          colorHash="#FF9800"
-        />
-        <RoadmapEl
-          title="In-Progress"
-          description="Features currently being debeloped"
-          data={numData.INPROGRESS}
-          color="border-violet-600"
-          colorHash="#9C27B0"
-        />
-        <RoadmapEl
-          title="Live"
-          description="Released features"
-          data={numData.LIVE}
-          color="border-green-600"
-          colorHash="#4CAF50"
-        />
+      <div className="grid grid-cols-3 gap-2 md:gap-10">
+        {loading && (
+          <>
+            <RoadmapSkeleton />
+            <RoadmapSkeleton />
+            <RoadmapSkeleton />
+          </>
+        )}
+        {data && (
+          <>
+            <RoadmapEl
+              title="Planned"
+              description="Ideas prioritized for research"
+              data={numData.PLANNED}
+              color="border-orange-600"
+              colorHash="#FF9800"
+            />
+            <RoadmapEl
+              title="In-Progress"
+              description="Features currently being debeloped"
+              data={numData.INPROGRESS}
+              color="border-violet-600"
+              colorHash="#9C27B0"
+            />
+            <RoadmapEl
+              title="Live"
+              description="Released features"
+              data={numData.LIVE}
+              color="border-green-600"
+              colorHash="#4CAF50"
+            />
+          </>
+        )}
       </div>
     </main>
   );

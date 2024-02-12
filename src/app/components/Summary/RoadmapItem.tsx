@@ -12,19 +12,27 @@ export default function RoadmapItem({
   title: string;
 }) {
   return (
-    <div className={`bg-white my-10 p-3 border-t-8  ${color} rounded-xl`}>
-      <p>{title}</p>
-      <h1 className="font-bold my-1 text-3xl">{event.title}</h1>
-      <p className="mb-2">{event.description}</p>
-      <Link
-        href={`/${event?._id}`}
-        className="bg-slate-200 font-bold text-blue rounded-md px-3 py-2 w-24 text-xs"
-      >
-        Suggestion
-      </Link>
-      <div className="flex justify-between px-2 ">
-        <UpvoteButton rotation="row">{event.upVotes}</UpvoteButton>
-        <CommentAmount amount={event.comments?.length || 0} />
+    <div
+      className={`bg-white my-10 p-3 border-t-8  ${color} rounded-xl h-52 sm:h-auto`}
+    >
+      <p className=" text:xs lg:text-sm xl:text-md">{title}</p>
+      <h1 className="font-bold md:my-1 text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl">
+        {event.title}
+      </h1>
+      <div className="flex flex-col-reverse sm:flex-col">
+        <p className="mb-2 xl:text-md  collapse sm:visible">
+          {event.description}
+        </p>
+        <Link
+          href={`/${event?._id}`}
+          className="bg-slate-200 font-bold text-blue rounded-md w-20 px-2 py-1 lg:px-3 lg:py-2 lg:w-24 text-xs"
+        >
+          Suggestion
+        </Link>
+        <div className="flex justify-between  ">
+          <UpvoteButton rotation="row">{event.upVotes}</UpvoteButton>
+          <CommentAmount amount={event.comments?.length || 0} />
+        </div>
       </div>
     </div>
   );

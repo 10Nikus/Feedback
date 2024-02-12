@@ -15,8 +15,8 @@ export default function RoadmapEl({
 }) {
   return (
     <div>
-      <div>
-        <h1 className="font-bold text-left flex items-center">
+      <div className="h-4 sm:h-9 pb-3">
+        <h1 className="text-xs xs:text-xs sm:text-md font-bold text-left flex items-center">
           <span>
             <svg
               className="my-1 mr-2"
@@ -31,7 +31,7 @@ export default function RoadmapEl({
           </span>
           {title} ({data?.length})
         </h1>
-        <p>{description}</p>
+        <p className="collapse sm:visible">{description}</p>
       </div>
       {data.map((event, index) => (
         <RoadmapItem

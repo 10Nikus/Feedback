@@ -11,7 +11,7 @@ export default function Comment({
   return (
     <>
       <div
-        className={`py-6 flex w-full justify-between ${
+        className={`py-6 flex justify-between ${
           comment.id
             ? comment.replies
               ? null
