@@ -40,7 +40,7 @@ export default function Roadmap() {
   }, [data]);
 
   return (
-    <main className="px-36 pt-20 bg-slate-100">
+    <main className="px-36 pt-20 md:px-24 bg-slate-100 sm:bg-blue md:bg-orange-500 lg:bg-red xl:bg-green-700">
       <Navbar>
         <GoBackBtn color="white" />
         <FeedbuckButton title="+Add Feedback" link="/new" />

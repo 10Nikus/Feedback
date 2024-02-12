@@ -17,7 +17,7 @@ export default function Header() {
 
   return (
     <Navbar>
-      <div className="flex flex-row-reverse justify-between gap-2 lg:gap-4 xl:gap-10 md:flex-row xs:blue-200 sm:bg-green-600 md:bg-red  xl:bg-black lg:bg-stone-400">
+      <div className="flex flex-row-reverse justify-between gap-2 lg:gap-4 xl:gap-10 md:flex-row xs:blue-200 xs:bg-green-600 sm:bg-orange-500 md:bg-red  xl:bg-black lg:bg-stone-400">
         <div className="flex  justify-center w-0 md:w-auto items-center gap-3  collapse md:visible">
           <svg width="23" height="24" xmlns="http://www.w3.org/2000/svg">
             <path

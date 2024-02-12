@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import CancelBtn from "./CancelBtn";
 import { useRouter } from "next/navigation";
 import useAddPost from "@/app/hooks/UseAddPost";
@@ -33,7 +33,10 @@ export default function Form() {
   }
 
   return (
-    <div className="bg-white p-10  flex flex-col gap-8" onSubmit={handleSubmit}>
+    <div
+      className="bg-white p-10  flex flex-col gap-8  "
+      onSubmit={handleSubmit}
+    >
       <h1 className="font-bold text-5xl">Give Feedback</h1>
       <div>
         <h1 className="font-bold">Feedback Title</h1>

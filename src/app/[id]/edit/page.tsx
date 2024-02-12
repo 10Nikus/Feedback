@@ -4,7 +4,7 @@ export default function Edit() {
   return (
     <main className="bg-slate-100 flex flex-col items-center px-44 h-svh">
       <svg
-        className="relative right-60 top-8"
+        className="relative right-60 top-8 collapse sm:visible "
         width="56"
         height="56"
         xmlns="http://www.w3.org/2000/svg"
