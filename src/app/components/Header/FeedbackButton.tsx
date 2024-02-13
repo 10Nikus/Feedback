@@ -12,7 +12,7 @@ export default function FeedbuckButton({
     <motion.button
       whileHover={{ scale: 1.05 }}
       transition={{ type: "spring", stiffness: 500, mass: 0.5 }}
-      onClick={() => router.replace(link)}
+      onClick={() => router.push(link)}
       className="flex justify-center items-center text-xs lg:text-sm  bg-lilac text-white rounded-md px-4 py-2 gap-1 font-bold md:px-1"
     >
       {title}
