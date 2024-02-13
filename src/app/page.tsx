@@ -1,4 +1,5 @@
 import { FeedbackList } from "./components/FeedbackList/FeedbackList";
+import { FeedbackListMobile } from "./components/FeedbackList/FeedbackListMobile";
 import Header from "./components/Header/Header";
 import MobileSidebar from "./components/sidebar/MobileSidebar";
 import Sidebar from "./components/sidebar/Sidebar";
@@ -11,6 +12,7 @@ export default async function Home() {
       <div className="w-full mx-0 ">
         <Header />
         <FeedbackList />
+        <FeedbackListMobile />
       </div>
     </main>
   );
