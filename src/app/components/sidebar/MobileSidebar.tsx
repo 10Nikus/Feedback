@@ -45,10 +45,16 @@ export default function MobileSidebar() {
         </div>
         <button onClick={() => setIsOpen((prev) => !prev)}>
           {isOpen ? (
-            "Close"
+            <svg width="18" height="17" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.01.368l2.122 2.122-6.01 6.01 6.01 6.01-2.122 2.122L9 10.622l-6.01 6.01L.868 14.51 6.88 8.5.87 2.49 2.988.368 9 6.38 15.01.37z"
+                fill="#FFF"
+                fillRule="evenodd"
+              />
+            </svg>
           ) : (
             <svg width="20" height="17" xmlns="http://www.w3.org/2000/svg">
-              <g fill="#FFF" fill-rule="evenodd">
+              <g fill="#FFF" fillRule="evenodd">
                 <path d="M0 0h20v3H0zM0 7h20v3H0zM0 14h20v3H0z" />
               </g>
             </svg>
@@ -56,8 +62,8 @@ export default function MobileSidebar() {
         </button>
       </div>
       {isOpen && (
-        <div className="absolute right-0 top-20 bg-white w-3/5 h-full">
-          <div className="flex flex-col gap-3 bg-white rounded-md  p-5">
+        <div className="absolute sm:hidden right-0 top-20 bg-slate-100 w-3/4 h-full py-6 px-8">
+          <div className="flex flex-col gap-3 bg-white rounded-md mb-4 p-5">
             <div className="flex gap-2">
               <Button>All</Button>
               <Button>UI</Button>
