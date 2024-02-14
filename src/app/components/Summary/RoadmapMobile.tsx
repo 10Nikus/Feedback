@@ -33,7 +33,7 @@ export default function BasicTabs() {
   }, [data]);
 
   return (
-    <div>
+    <div className="flex flex-col sm:hidden">
       <div className="flex  justify-center  border-b-2">
         <button
           className={`${
@@ -79,6 +79,7 @@ export default function BasicTabs() {
                 color="border-indigo-500"
                 event={event}
                 title="Planned"
+                hash="#3F51B5"
               />
             ))}
           </div>
@@ -95,6 +96,7 @@ export default function BasicTabs() {
                 color="border-yellow-500"
                 event={event}
                 title="In-Progress"
+                hash="#FFEB3B"
               />
             ))}
           </div>
@@ -111,6 +113,7 @@ export default function BasicTabs() {
                 color="border-green-500"
                 event={event}
                 title="Live"
+                hash="#4CAF50"
               />
             ))}
           </div>
