@@ -68,7 +68,7 @@ export default function BasicTabs() {
       </div>
       <div>
         {value === "Planned" && (
-          <>
+          <div className="p-5">
             <h1 className="font-bold">
               Planned ({numData && numData.PLANNED.length})
             </h1>
@@ -81,10 +81,10 @@ export default function BasicTabs() {
                 title="Planned"
               />
             ))}
-          </>
+          </div>
         )}
         {value === "InProgress" && (
-          <>
+          <div className="p-5">
             <h1 className="font-bold">
               In-Progress ({numData && numData.INPROGRESS.length})
             </h1>
@@ -97,10 +97,10 @@ export default function BasicTabs() {
                 title="In-Progress"
               />
             ))}
-          </>
+          </div>
         )}
         {value === "Live" && (
-          <>
+          <div className="p-5">
             <h1 className="font-bold">
               Live ({numData && numData.LIVE.length})
             </h1>
@@ -113,7 +113,7 @@ export default function BasicTabs() {
                 title="Live"
               />
             ))}
-          </>
+          </div>
         )}
       </div>
     </div>

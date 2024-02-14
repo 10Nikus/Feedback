@@ -23,9 +23,9 @@ export default function RoadmapItem({
         <p className="mb-2 xl:text-md">{event.description}</p>
         <Link
           href={`/${event?._id}`}
-          className="bg-slate-200 font-bold text-blue rounded-md w-20 px-2 py-1 lg:px-3 lg:py-2 lg:w-24 text-xs"
+          className="bg-slate-200 font-bold text-blue rounded-md w-fit  px-2 py-1 lg:px-3 lg:py-2  text-xs"
         >
-          Suggestion
+          {event.category}
         </Link>
         <div className="flex justify-between  ">
           <UpvoteButton rotation="row">{event.upVotes}</UpvoteButton>

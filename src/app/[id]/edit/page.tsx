@@ -2,7 +2,7 @@ import Form from "@/app/components/Form/UpdateForm";
 
 export default function Edit() {
   return (
-    <main className="bg-slate-100 flex flex-col items-center px-44 h-svh">
+    <main className="bg-slate-100 flex flex-col items-center px-4   h-svh">
       <svg
         className="relative right-60 top-8 collapse sm:visible "
         width="56"

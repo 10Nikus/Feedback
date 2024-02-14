@@ -34,10 +34,10 @@ export default function Form() {
 
   return (
     <div
-      className="bg-white p-10  flex flex-col gap-8  "
+      className="bg-white p-10 rounded-md flex flex-col gap-8  "
       onSubmit={handleSubmit}
     >
-      <h1 className="font-bold text-5xl">Give Feedback</h1>
+      <h1 className="font-bold text-xl">Create New Feedback</h1>
       <div>
         <h1 className="font-bold">Feedback Title</h1>
         <p>Add a short, descriptive headline</p>
@@ -77,10 +77,10 @@ export default function Form() {
           onChange={handleChange}
         />
       </div>
-      <div className="flex justify-end gap-2">
+      <div className="flex flex-col-reverse gap-4 sm:flex-row sm:justify-end sm:gap-2">
         <CancelBtn />
         <button
-          className="bg-slate-200 px-4 py-2 rounded-md"
+          className="bg-lilac text-white px-4 py-2 rounded-md"
           onClick={handleSubmit}
         >
           Add Feedback
