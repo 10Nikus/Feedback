@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function FeedbackListItem({ feedback, isDetail }: any) {
   return (
     <motion.div
-      className="flex   py-8 gap-20 bg-white rounded-lg  m-4 w-full px-12"
+      className="hidden sm:flex py-8 gap-20 bg-white rounded-lg  m-4 w-full px-12"
       whileHover={{ scale: !isDetail ? 1.03 : 1 }}
       transition={{ type: "spring", stiffness: 500, mass: 0.5 }}
     >
@@ -16,14 +16,12 @@ export default function FeedbackListItem({ feedback, isDetail }: any) {
           <h3 className="font-bold">{feedback?.title}</h3>
           <p>{feedback?.description}</p>
 
-          {!isDetail && (
-            <Link
-              href={`/${feedback?._id}`}
-              className={`bg-slate-200 font-bold text-blue rounded-md px-3 py-2 w-24 text-xs `}
-            >
-              Suggestion
-            </Link>
-          )}
+          <Link
+            href={`/${feedback?._id}`}
+            className={`bg-slate-200 font-bold text-blue rounded-md px-3 py-2 w-24 text-xs `}
+          >
+            Suggestion
+          </Link>
         </div>
       </div>
       <CommentAmount amount={feedback?.comments?.length || 0} />

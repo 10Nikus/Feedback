@@ -38,12 +38,14 @@ export default function MobileSidebar() {
 
   return (
     <>
-      <div className="flex w-full justify-between xs:hidden bg-tabHeader text-white py-4 pl-4">
+      <div
+        className={`flex w-full justify-between xs:hidden bg-tabHeader text-white py-2 pl-4`}
+      >
         <div>
           <h1>Frontend Mentor</h1>
           <h2>Feedback board</h2>
         </div>
-        <button onClick={() => setIsOpen((prev) => !prev)}>
+        <button className="pr-2" onClick={() => setIsOpen((prev) => !prev)}>
           {isOpen ? (
             <svg width="18" height="17" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -62,7 +64,7 @@ export default function MobileSidebar() {
         </button>
       </div>
       {isOpen && (
-        <div className="absolute sm:hidden right-0 top-20 bg-slate-100 w-3/4 h-full py-6 px-8">
+        <div className="absolute sm:hidden right-0 top-16 bg-slate-100 w-3/4 h-full py-6 px-8">
           <div className="flex flex-col gap-3 bg-white rounded-md mb-4 p-5">
             <div className="flex gap-2">
               <Button>All</Button>
