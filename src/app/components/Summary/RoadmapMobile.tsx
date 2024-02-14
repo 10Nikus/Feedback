@@ -1,71 +1,121 @@
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import { useState } from "react";
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-function CustomTabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
+import { useEffect, useState } from "react";
+import useFilter from "@/app/hooks/UseFilter";
+import useFetch from "@/app/hooks/UseFetch";
+import RoadmapItem from "./RoadmapItem";
 
 export default function BasicTabs() {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState("Planned");
+  const filterData = useFilter();
+  const { data, loading } = useFetch(`api/posts/`);
+  const [feedbacks, setFeedbacks] = useState<any>([]);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+  const [numData, setNumData] = useState<{
+    PLANNED: any;
+    INPROGRESS: any;
+    LIVE: any;
+  }>({
+    PLANNED: [],
+    INPROGRESS: [],
+    LIVE: [],
+  });
+
+  useEffect(() => {
+    setFeedbacks(data);
+  }, [data]);
+
+  useEffect(() => {
+    if (data) {
+      const PLANNED = filterData(feedbacks, "planned", "status");
+      const INPROGRESS = filterData(feedbacks, "in-progress", "status");
+      const LIVE = filterData(feedbacks, "live", "status");
+      setNumData({ PLANNED, INPROGRESS, LIVE });
+    }
+  }, [data]);
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
+    <div>
+      <div className="flex  justify-center  border-b-2">
+        <button
+          className={`${
+            value === "Planned" && "font-bold border-b-4 border-indigo-500 "
+          } py-3 px-3`}
+          onClick={() => {
+            setValue("Planned");
+          }}
         >
-          <Tab label="Planned" {...a11yProps(0)} />
-          <Tab label="In-Progress" {...a11yProps(1)} />
-          <Tab label="Live" {...a11yProps(2)} />
-        </Tabs>
-      </Box>
-      <CustomTabPanel value={value} index={0}>
-        <h1>Planned</h1>
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <h1>Planned</h1>
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
-        <h1>Live</h1>
-      </CustomTabPanel>
-    </Box>
+          Planned({numData && numData.PLANNED.length})
+        </button>
+        <button
+          className={`${
+            value === "InProgress" && "font-bold border-b-4 border-yellow-500 "
+          } px-3`}
+          onClick={() => {
+            setValue("InProgress");
+          }}
+        >
+          In-Progress({numData && numData.INPROGRESS.length})
+        </button>
+        <button
+          className={`${
+            value === "Live" && "font-bold border-b-4 border-green-500"
+          } px-3`}
+          onClick={() => {
+            setValue("Live");
+          }}
+        >
+          Live({numData && numData.LIVE.length})
+        </button>
+      </div>
+      <div>
+        {value === "Planned" && (
+          <>
+            <h1 className="font-bold">
+              Planned ({numData && numData.PLANNED.length})
+            </h1>
+            <p>Ideas prioritized for research</p>
+            {numData.PLANNED.map((event: any) => (
+              <RoadmapItem
+                key={event._id}
+                color="border-indigo-500"
+                event={event}
+                title="Planned"
+              />
+            ))}
+          </>
+        )}
+        {value === "InProgress" && (
+          <>
+            <h1 className="font-bold">
+              In-Progress ({numData && numData.INPROGRESS.length})
+            </h1>
+            <p>Features currently being developed</p>
+            {numData.INPROGRESS.map((event: any) => (
+              <RoadmapItem
+                key={event._id}
+                color="border-yellow-500"
+                event={event}
+                title="In-Progress"
+              />
+            ))}
+          </>
+        )}
+        {value === "Live" && (
+          <>
+            <h1 className="font-bold">
+              Live ({numData && numData.LIVE.length})
+            </h1>
+            <p>Released features</p>
+            {numData.LIVE.map((event: any) => (
+              <RoadmapItem
+                key={event._id}
+                color="border-green-500"
+                event={event}
+                title="Live"
+              />
+            ))}
+          </>
+        )}
+      </div>
+    </div>
   );
 }

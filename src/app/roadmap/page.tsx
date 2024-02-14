@@ -12,37 +12,37 @@ import RoadmapSkeleton from "../components/skeleton/RoadmapSkeleton";
 import BasicTabs from "../components/Summary/RoadmapMobile";
 
 export default function Roadmap() {
-  const filterData = UseFilter();
-  const { data, loading } = useFetch(`api/posts/`);
-  const [feedbacks, setFeedbacks] = useState<any>([]);
-  const dispatch = useDispatch();
+  // const filterData = UseFilter();
+  // const { data, loading } = useFetch(`api/posts/`);
+  // const [feedbacks, setFeedbacks] = useState<any>([]);
+  // const dispatch = useDispatch();
 
-  const [numData, setNumData] = useState<{
-    PLANNED: any;
-    INPROGRESS: any;
-    LIVE: any;
-  }>({
-    PLANNED: [],
-    INPROGRESS: [],
-    LIVE: [],
-  });
+  // const [numData, setNumData] = useState<{
+  //   PLANNED: any;
+  //   INPROGRESS: any;
+  //   LIVE: any;
+  // }>({
+  //   PLANNED: [],
+  //   INPROGRESS: [],
+  //   LIVE: [],
+  // });
 
-  useEffect(() => {
-    setFeedbacks(data);
-  }, [data]);
+  // useEffect(() => {
+  //   setFeedbacks(data);
+  // }, [data]);
 
-  useEffect(() => {
-    if (data) {
-      const PLANNED = filterData(feedbacks, "planned", "status");
-      const INPROGRESS = filterData(feedbacks, "in-progress", "status");
-      const LIVE = filterData(feedbacks, "live", "status");
-      setNumData({ PLANNED, INPROGRESS, LIVE });
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     const PLANNED = filterData(feedbacks, "planned", "status");
+  //     const INPROGRESS = filterData(feedbacks, "in-progress", "status");
+  //     const LIVE = filterData(feedbacks, "live", "status");
+  //     setNumData({ PLANNED, INPROGRESS, LIVE });
+  //   }
+  // }, [data]);
 
   return (
     <>
-      <main className="min-h-svh  p-0 sm:px-8 lg:px-36 pt-2 sm:pt-10 lg:pt-20  md:px-24 bg-slate-100">
+      <main className="min-h-svh  p-0 sm:px-8 lg:px-36  sm:pt-10 lg:pt-20  md:px-24 bg-slate-100">
         <Navbar>
           <GoBackBtn color="white" />
           <FeedbuckButton title="+Add Feedback" link="/new" />

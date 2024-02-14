@@ -19,10 +19,8 @@ export default function RoadmapItem({
       <h1 className="font-bold md:my-1 text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl">
         {event.title}
       </h1>
-      <div className="flex flex-col-reverse sm:flex-col">
-        <p className="mb-2 xl:text-md  collapse sm:visible">
-          {event.description}
-        </p>
+      <div className="flex flex-col">
+        <p className="mb-2 xl:text-md">{event.description}</p>
         <Link
           href={`/${event?._id}`}
           className="bg-slate-200 font-bold text-blue rounded-md w-20 px-2 py-1 lg:px-3 lg:py-2 lg:w-24 text-xs"
