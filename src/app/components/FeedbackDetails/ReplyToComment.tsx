@@ -34,7 +34,6 @@ export default function ReplyToComment({
   async function handleSubmit() {
     const area = document.querySelector("textarea");
     const content = area?.value;
-    console.log(content);
 
     const data = {
       content: content,
@@ -64,7 +63,6 @@ export default function ReplyToComment({
 
       if (!res.ok)
         throw new Error("An error occurred while submitting the form");
-
 
       setReplying(null);
       router.refresh();

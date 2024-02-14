@@ -1,7 +1,6 @@
 export default function UseSort() {
   function sortData(data: any, sort: string) {
     if (!data) return data;
-    console.log(sort);
 
     switch (sort) {
       case "Most UpVotes":
