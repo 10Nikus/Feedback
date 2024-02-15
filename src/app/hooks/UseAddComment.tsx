@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
+import { commentType } from "@/types/commentType";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-export default function UseAddComment(comments: any, id: string) {
-  const [loading, setLoading] = useState(true);
+export default function UseAddComment(
+  comments: Array<commentType>,
+  id: string
+) {
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   async function postData(comment: string) {
-    const newComment = {
+    const newComment: commentType = {
       id: uuidv4(),
       content: comment,
       user: {

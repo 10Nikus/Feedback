@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function useDeletePost() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   async function deletePost(id: string) {
     try {

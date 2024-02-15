@@ -1,7 +1,8 @@
+import { feedbackType } from "@/types/feedbackType";
 import { useEffect, useState } from "react";
 
 const useFetch = (url: string) => {
-  const [data, setData] = useState<data | null>(null);
+  const [data, setData] = useState<Array<feedbackType> | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -25,45 +26,4 @@ const useFetch = (url: string) => {
   return { data, loading, error };
 };
 
-type Reply = {
-  content: "1000 sure";
-  replyingTo: "upbeat1811";
-  user: {
-    image: "./assets/user-images/image-zena.jpg";
-    name: "Zena Kelley";
-    username: "velvetround";
-  };
-};
-
-type Comment = {
-  id: string;
-  content: string;
-  user: {
-    image: string;
-    name: string;
-    username: string;
-  };
-  replies: Reply[];
-};
-
-type data = {
-  feedback: {
-    _id: string;
-    id: string;
-    title: string;
-    category: string;
-    upVotes: number;
-    status: string;
-    description: string;
-    comments: Comment[];
-  };
-};
-
-type loading = {
-  data: data | null;
-  loading: boolean;
-  error: Error | null;
-};
-
 export default useFetch;
-export type { data, loading, Comment, Reply };

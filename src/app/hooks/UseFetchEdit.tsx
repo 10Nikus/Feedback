@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 export default function useFetchEdit() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error | null>(null);
 
   async function getData(id: string) {
     try {

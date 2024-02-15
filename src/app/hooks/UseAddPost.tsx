@@ -1,11 +1,12 @@
+import { addDataType } from "@/types/addType";
 import { useState } from "react";
 
 export default function useAddPost() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  async function addPost(data: any) {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error | null>(null);
+  async function addPost(data: addDataType) {
     try {
-      const res = await fetch("api/posts", {
+      const res = await fetch("api/postsd", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

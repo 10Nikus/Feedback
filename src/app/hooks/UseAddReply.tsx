@@ -1,9 +1,10 @@
+import { editDataType } from "@/types/editType";
 import { useState } from "react";
 
 export default function useEditPost(id: string) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  async function editPost(data: any) {
+  async function editPost(data: editDataType) {
     try {
       const res = await fetch("/api/posts/" + id, {
         method: "PUT",
