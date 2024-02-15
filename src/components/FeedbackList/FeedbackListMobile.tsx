@@ -1,7 +1,6 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import FeedbackListItem from "./FeedbackListItem";
 import { useEffect, useState } from "react";
 import useFetch from "@/app/hooks/UseFetch";
 import useFilter from "@/app/hooks/UseFilter";
@@ -11,10 +10,11 @@ import { setNumber } from "@/lib/features/slice/feedbuckNumberSlice";
 import FeedbackItemListSkeleton from "../skeleton/FeedbackItemListSkeleton";
 import FeedbackListItemMobile from "./FeedbackListItemMobile";
 import FeedbuckButton from "../Header/FeedbackButton";
+import { feedbackType } from "@/types/feedbackType";
 
 export const FeedbackListMobile = () => {
   const { data, loading } = useFetch(`api/posts/`);
-  const [feedbacks, setFeedbacks] = useState<any>([]);
+  const [feedbacks, setFeedbacks] = useState<Array<feedbackType>>([]);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -28,7 +28,7 @@ export const FeedbackListMobile = () => {
     function makeData() {
       const filteredData = filterData(data, filter, "category");
       const sortedData = sortData(filteredData, sort);
-      setFeedbacks(sortedData);
+      sortedData && setFeedbacks(sortedData);
       router.refresh();
     }
     makeData();

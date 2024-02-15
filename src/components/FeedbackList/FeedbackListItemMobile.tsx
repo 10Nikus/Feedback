@@ -1,8 +1,15 @@
 import Link from "next/link";
 import UpvoteButton from "./UpvoteButton";
 import CommentAmount from "./CommentAmount";
+import { feedbackType } from "@/types/feedbackType";
 
-export default function FeedbackListItemMobile({ feedback, isDetail }: any) {
+export default function FeedbackListItemMobile({
+  feedback,
+  isDetail,
+}: {
+  feedback: feedbackType;
+  isDetail: boolean;
+}) {
   return (
     <div className="flex sm:hidden flex-col  py-4  bg-white rounded-lg  m-4 w-full px-6">
       <div className="flex flex-col gap-12 w-full">

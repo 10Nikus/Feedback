@@ -10,10 +10,11 @@ import { useRouter } from "next/navigation";
 import { setNumber } from "@/lib/features/slice/feedbuckNumberSlice";
 import FeedbackItemListSkeleton from "../skeleton/FeedbackItemListSkeleton";
 import FeedbuckButton from "../Header/FeedbackButton";
+import { feedbackType } from "@/types/feedbackType";
 
 export const FeedbackList = () => {
   const { data, loading } = useFetch(`api/posts/`);
-  const [feedbacks, setFeedbacks] = useState<any>([]);
+  const [feedbacks, setFeedbacks] = useState<Array<feedbackType>>([]);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -27,7 +28,7 @@ export const FeedbackList = () => {
     function makeData() {
       const filteredData = filterData(data, filter, "category");
       const sortedData = sortData(filteredData, sort);
-      setFeedbacks(sortedData);
+      sortedData && setFeedbacks(sortedData);
       router.refresh();
     }
     makeData();

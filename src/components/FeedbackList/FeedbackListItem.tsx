@@ -2,8 +2,15 @@ import Link from "next/link";
 import UpvoteButton from "./UpvoteButton";
 import CommentAmount from "./CommentAmount";
 import { motion } from "framer-motion";
+import { feedbackType } from "@/types/feedbackType";
 
-export default function FeedbackListItem({ feedback, isDetail }: any) {
+export default function FeedbackListItem({
+  feedback,
+  isDetail,
+}: {
+  feedback: feedbackType;
+  isDetail: boolean;
+}) {
   return (
     <motion.div
       className="hidden sm:flex py-8 gap-20 bg-white rounded-lg  m-4 w-full px-12"
