@@ -1,4 +1,4 @@
-import Form from "@/app/components/Form/UpdateForm";
+import Form from "@/components/Form/UpdateForm";
 
 export default function Edit() {
   return (

@@ -7,7 +7,7 @@ import useFetch from "@/app/hooks/UseFetch";
 import useFilter from "@/app/hooks/UseFilter";
 import UseSort from "@/app/hooks/UseSort";
 import { useRouter } from "next/navigation";
-import { setNumber } from "@/app/lib/features/slice/feedbuckNumberSlice";
+import { setNumber } from "@/lib/features/slice/feedbuckNumberSlice";
 import FeedbackItemListSkeleton from "../skeleton/FeedbackItemListSkeleton";
 import FeedbackListItemMobile from "./FeedbackListItemMobile";
 import FeedbuckButton from "../Header/FeedbackButton";

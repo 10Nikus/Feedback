@@ -1,8 +1,8 @@
-import { FeedbackList } from "./components/FeedbackList/FeedbackList";
-import { FeedbackListMobile } from "./components/FeedbackList/FeedbackListMobile";
-import Header from "./components/Header/Header";
-import MobileSidebar from "./components/sidebar/MobileSidebar";
-import Sidebar from "./components/sidebar/Sidebar";
+import { FeedbackList } from "@/components/FeedbackList/FeedbackList";
+import { FeedbackListMobile } from "@/components/FeedbackList/FeedbackListMobile";
+import Header from "@/components/Header/Header";
+import MobileSidebar from "@/components/sidebar/MobileSidebar";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 export default async function Home() {
   return (

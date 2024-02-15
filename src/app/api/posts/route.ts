@@ -1,4 +1,4 @@
-import dbConnect from "@/app/lib/db";
+import dbConnect from "@/lib/db";
 import { Feedback } from "@/app/models/feedback";
 
 import { NextResponse } from "next/server";

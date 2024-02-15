@@ -1,6 +1,6 @@
 "use client";
 
-import { setFilter } from "@/app/lib/features/slice/filterSlice";
+import { setFilter } from "@/lib/features/slice/filterSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";

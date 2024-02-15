@@ -1,4 +1,4 @@
-import dbConnect from "@/app/lib/db";
+import dbConnect from "@/lib/db";
 import { Feedback } from "@/app/models/feedback";
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -50,5 +50,5 @@ export async function GET(
   dbConnect();
   const feedback = await Feedback.findOne({ _id: id });
 
-  return NextResponse.json( feedback );
+  return NextResponse.json(feedback);
 }
