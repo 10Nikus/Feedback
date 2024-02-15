@@ -6,7 +6,7 @@ export default function useAddPost() {
   const [error, setError] = useState<Error | null>(null);
   async function addPost(data: addDataType) {
     try {
-      const res = await fetch("api/postsd", {
+      const res = await fetch("api/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

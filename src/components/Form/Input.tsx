@@ -1,8 +1,4 @@
-type InputProps = {
-  title: string;
-  description: string;
-  type: string;
-};
+import { InputProps } from "@/types/inputType";
 
 export default function Input({
   title,

@@ -6,21 +6,24 @@ import { useParams, useRouter } from "next/navigation";
 import useEditPost from "@/app/hooks/UseAddReply";
 import useDeletePost from "@/app/hooks/UseDelete";
 import useFetchEdit from "@/app/hooks/UseFetchEdit";
+import { editDataType } from "@/types/editType";
 
 export default function Form() {
   const { id }: { id: string } = useParams();
-  const [title, setTitle] = useState("");
+
+  const router = useRouter();
+
   const { editPost } = useEditPost(id);
   const { deletePost } = useDeletePost();
   const { getData } = useFetchEdit();
-  const router = useRouter();
-  const [data, setData] = useState({
+
+  const [title, setTitle] = useState<string>("");
+  const [data, setData] = useState<editDataType>({
     newTitle: "",
     newCategory: "",
     newDescription: "",
   });
 
-  // Fetch data from the server
   useEffect(() => {
     const fetchData = async () => {
       const data = await getData(id);

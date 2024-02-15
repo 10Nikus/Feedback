@@ -4,10 +4,11 @@ import { useState } from "react";
 import CancelBtn from "./CancelBtn";
 import { useRouter } from "next/navigation";
 import useAddPost from "@/app/hooks/UseAddPost";
+import { addDataType } from "@/types/addType";
 
 export default function Form() {
   const { addPost, loading, error } = useAddPost();
-  const [data, setData] = useState({
+  const [data, setData] = useState<addDataType>({
     title: "",
     category: "Feature",
     description: "",
