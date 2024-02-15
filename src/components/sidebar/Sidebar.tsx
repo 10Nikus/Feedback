@@ -6,16 +6,17 @@ import RoadmapElement from "./RoadmapElement";
 import useFetch from "@/app/hooks/UseFetch";
 import { useEffect, useState } from "react";
 import UseFilter from "@/app/hooks/UseFilter";
+import { feedbackType } from "@/types/feedbackType";
 
 export default function Roadmap() {
   const filterData = UseFilter();
   const { data } = useFetch(`api/posts/`);
-  const [feedbacks, setFeedbacks] = useState<any>([]);
+  const [feedbacks, setFeedbacks] = useState<Array<feedbackType> | null>([]);
 
   const [numData, setNumData] = useState<{
-    PLANNED: any;
-    INPROGRESS: any;
-    LIVE: any;
+    PLANNED: Array<feedbackType>;
+    INPROGRESS: Array<feedbackType>;
+    LIVE: Array<feedbackType>;
   }>({
     PLANNED: [],
     INPROGRESS: [],
@@ -31,7 +32,9 @@ export default function Roadmap() {
       const PLANNED = filterData(feedbacks, "planned", "status");
       const INPROGRESS = filterData(feedbacks, "in-progress", "status");
       const LIVE = filterData(feedbacks, "live", "status");
-      setNumData({ PLANNED, INPROGRESS, LIVE });
+      if (PLANNED && INPROGRESS && LIVE) {
+        setNumData({ PLANNED, INPROGRESS, LIVE });
+      }
     }
   }, [feedbacks]);
 

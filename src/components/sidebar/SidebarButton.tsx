@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 
-export default function Button({ children }: Readonly<{ children: string }>) {
+export default function Button({ children }: { children: string }) {
   const filter = useSelector((state: any) => state.filterSlice.status);
   const dispatch = useDispatch();
 

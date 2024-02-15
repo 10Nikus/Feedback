@@ -1,4 +1,4 @@
-export default function RoadmapEleme({
+export default function RoadmapElement({
   color,
   title,
   count,
