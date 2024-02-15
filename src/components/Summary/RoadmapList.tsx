@@ -1,3 +1,4 @@
+import { feedbackType } from "@/types/feedbackType";
 import RoadmapItem from "./RoadmapItem";
 
 export default function RoadmapEl({
@@ -9,7 +10,7 @@ export default function RoadmapEl({
 }: {
   title: string;
   description: string;
-  data: object[];
+  data: Array<feedbackType>;
   color: string;
   colorHash: string;
 }) {
@@ -39,6 +40,7 @@ export default function RoadmapEl({
           title={title}
           color={color}
           event={event}
+          hash={colorHash}
         />
       ))}
     </div>

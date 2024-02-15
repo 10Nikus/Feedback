@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CommentAmount from "../FeedbackList/CommentAmount";
 import UpvoteButton from "../FeedbackList/UpvoteButton";
+import { feedbackType } from "@/types/feedbackType";
 
 export default function RoadmapItem({
   color,
@@ -9,7 +10,7 @@ export default function RoadmapItem({
   hash,
 }: {
   color: string;
-  event: any;
+  event: feedbackType;
   title: string;
   hash: string;
 }) {

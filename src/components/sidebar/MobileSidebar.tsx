@@ -9,10 +9,11 @@ import RoadmapElement from "./RoadmapElement";
 import { feedbackType } from "@/types/feedbackType";
 
 export default function MobileSidebar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const filterData = useFilter();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const { data } = useFetch(`api/posts/`);
   const [feedbacks, setFeedbacks] = useState<Array<feedbackType> | null>([]);
+
+  const filterData = useFilter();
 
   const [numData, setNumData] = useState<{
     PLANNED: Array<feedbackType>;
@@ -25,7 +26,7 @@ export default function MobileSidebar() {
   });
 
   useEffect(() => {
-    setFeedbacks(data);
+    data && setFeedbacks(data);
   }, [data]);
 
   useEffect(() => {

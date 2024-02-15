@@ -2,17 +2,18 @@ import { useEffect, useState } from "react";
 import useFilter from "@/app/hooks/UseFilter";
 import useFetch from "@/app/hooks/UseFetch";
 import RoadmapItem from "./RoadmapItem";
+import { feedbackType } from "@/types/feedbackType";
 
 export default function BasicTabs() {
   const [value, setValue] = useState("Planned");
   const filterData = useFilter();
   const { data, loading } = useFetch(`api/posts/`);
-  const [feedbacks, setFeedbacks] = useState<any>([]);
+  const [feedbacks, setFeedbacks] = useState<Array<feedbackType>>([]);
 
   const [numData, setNumData] = useState<{
-    PLANNED: any;
-    INPROGRESS: any;
-    LIVE: any;
+    PLANNED: Array<feedbackType>;
+    INPROGRESS: Array<feedbackType>;
+    LIVE: Array<feedbackType>;
   }>({
     PLANNED: [],
     INPROGRESS: [],
@@ -20,17 +21,19 @@ export default function BasicTabs() {
   });
 
   useEffect(() => {
-    setFeedbacks(data);
+    data && setFeedbacks(data);
   }, [data]);
 
   useEffect(() => {
-    if (data) {
+    if (feedbacks) {
       const PLANNED = filterData(feedbacks, "planned", "status");
       const INPROGRESS = filterData(feedbacks, "in-progress", "status");
       const LIVE = filterData(feedbacks, "live", "status");
-      setNumData({ PLANNED, INPROGRESS, LIVE });
+      if (PLANNED && INPROGRESS && LIVE) {
+        setNumData({ PLANNED, INPROGRESS, LIVE });
+      }
     }
-  }, [data]);
+  }, [feedbacks]);
 
   return (
     <div className="flex flex-col sm:hidden">
