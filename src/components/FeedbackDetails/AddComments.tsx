@@ -1,18 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import FeedbuckButton from "../Header/FeedbackButton";
 import { useRouter } from "next/navigation";
 import UseAddComment from "@/app/hooks/UseAddComment";
+import { commentType } from "@/types/commentType";
 
 export default function AddComent({
   id,
   comments,
 }: {
-  id: any;
-  comments: any;
+  id: string;
+  comments: Array<commentType>;
 }) {
-  const { postData, loading, error } = UseAddComment(comments, id);
+  const { postData } = UseAddComment(comments, id);
   const [comment, setComment] = useState("");
   const router = useRouter();
 

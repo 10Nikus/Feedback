@@ -1,14 +1,13 @@
+import { replyType } from "@/types/replyType";
 import Avatar from "@mui/material/Avatar";
 
-export default function Reply({ reply }: { reply: any }) {
+export default function Reply({ reply }: { reply: replyType }) {
   return (
     <>
       <div
         className={`py-6 flex w-full justify-between ${
-          reply.id
-            ? reply.replies
-              ? null
-              : "border-b-2 border-gray-300"
+          reply.replies
+            ? "border-b-2 border-gray-300"
             : "border-l-2 border-gray-300"
         }`}
       >

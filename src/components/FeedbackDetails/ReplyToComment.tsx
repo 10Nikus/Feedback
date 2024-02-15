@@ -1,5 +1,7 @@
 "use client";
 
+import { commentType } from "@/types/commentType";
+import { replyType } from "@/types/replyType";
 import { useRouter } from "next/navigation";
 
 // Code to reply to a comment
@@ -11,31 +13,19 @@ export default function ReplyToComment({
 }: {
   replyintTo: string;
   setReplying: Function;
-  index: any;
-  comments:
-    | [
-        {
-          content: string;
-          replyingTo: string;
-          index: string;
-          user: {
-            image: string;
-            name: string;
-            username: string;
-          };
-          replies: [any];
-        }
-      ]
-    | []
-    | any;
+  index: string;
+  comments: Array<commentType>;
 }) {
   const router = useRouter();
 
   async function handleSubmit() {
     const area = document.querySelector("textarea");
-    const content = area?.value;
 
-    const data = {
+    if (!area) return;
+
+    const content: string = area.value;
+
+    const data: replyType = {
       content: content,
       replyingTo: replyintTo,
       user: {
@@ -45,12 +35,9 @@ export default function ReplyToComment({
       },
     };
     const id = comments?.findIndex(
-      (comment: any) => comment.user.username === replyintTo
+      (comment: commentType) => comment.user.username === replyintTo
     );
-
-    !comments[id].replies
-      ? (comments[id].replies = [data])
-      : comments[id].replies.push(data);
+    comments[id].replies?.push(data);
 
     try {
       const res = await fetch("/api/comment/" + index, {

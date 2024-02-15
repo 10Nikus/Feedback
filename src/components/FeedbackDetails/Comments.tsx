@@ -1,11 +1,12 @@
 import Avatar from "@mui/material/Avatar";
 import Reply from "./Reply";
+import { commentType } from "@/types/commentType";
 
 export default function Comment({
   comment,
   setReplying,
 }: {
-  comment: any;
+  comment: commentType;
   setReplying: Function;
 }) {
   return (
@@ -33,12 +34,7 @@ export default function Comment({
           </div>
 
           <div className="w-full">
-            <h2>
-              <span className="text-blue">
-                {comment.replyingTo && "@" + comment.replyingTo}
-              </span>
-              {" " + comment.content}
-            </h2>
+            <h2>{comment.content}</h2>
           </div>
         </div>
         <h1
