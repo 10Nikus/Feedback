@@ -23,6 +23,7 @@ export default function Page() {
       setFeedback(data);
     }
   }, [data]);
+  if (typeof id !== "string") return null;
 
   return (
     <main className="bg-slate-100 flex flex-col items-center px-2 pt-1 md:px-20 lg:px-36 py-20">
@@ -30,16 +31,16 @@ export default function Page() {
         <GoBackBtn color="black" />
         <Link
           href={`${id}/edit`}
-          className="bg-lilac text-white rounded-md px-4 py-2 font-bold"
+          className="bg-blue text-white rounded-md px-4 py-2 font-bold"
         >
           Edit Feedback
         </Link>
       </div>
       {loading && <FeedbackItemDetailsSkeleton />}
-      {data && (
+      {feedback && (
         <>
-          <FeedbackListItem feedback={data} isDetail={true} />
-          <FeedbackListItemMobile feedback={data} isDetail={true} />
+          <FeedbackListItem feedback={feedback} isDetail={true} />
+          <FeedbackListItemMobile feedback={feedback} isDetail={true} />
           <div className="flex  flex-col  py-8 gap-5 bg-white rounded-lg  m-4 w-full px-12">
             <h1>{feedback.comments?.length} Comments</h1>
             {feedback.comments?.map((comment: any, index: number) => (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import UseAddComment from "@/app/hooks/UseAddComment";
 import { commentType } from "@/types/commentType";
@@ -33,14 +33,19 @@ export default function AddComent({
       <textarea
         className="bg-slate-200 w-full px-2 py-2 rounded-md"
         placeholder="type your comments here"
-        rows={7}
+        rows={4}
         value={comment}
         onChange={handleChange}
         maxLength={250}
       />
       <div className="flex justify-between mt-6">
-        <p>{250 - comment.length} Words Left</p>
-        <button onClick={handleSubmit}>Add Comment</button>
+        <p className="opacity-75">{250 - comment.length} Words Left</p>
+        <button
+          className="bg-lilac hover:opacity-50 text-white  px-4 py-2 rounded-lg"
+          onClick={handleSubmit}
+        >
+          Post comment
+        </button>
       </div>
     </div>
   );

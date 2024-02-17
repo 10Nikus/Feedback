@@ -38,7 +38,7 @@ export default function Comment({
           </div>
         </div>
         <h1
-          className="text-blue"
+          className="text-blue cursor-pointer hover:underline"
           onClick={() => setReplying(comment.user.username)}
         >
           reply

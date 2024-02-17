@@ -39,7 +39,6 @@ export default function Form() {
     fetchData();
   }, [id]);
 
-  // Update the state when the input changes
   function handleChange(
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -105,21 +104,23 @@ export default function Form() {
           onChange={handleChange}
         />
       </div>
-      <div className="flex flex-col-reverse gap-4 sm:flex-row sm:justify-end sm:gap-2">
+      <div className="flex flex-col-reverse gap-4 sm:flex-row sm:justify-between sm:gap-2">
         <button
           type="button"
-          className="bg-red text-white px-4 py-2 rounded-md"
+          className="bg-red hover:opacity-50 text-white px-4 py-2 rounded-lg"
           onClick={handleDelete}
         >
-          delete
+          Delete
         </button>
-        <CancelBtn />
-        <button
-          onClick={handleSubmit}
-          className="bg-lilac text-white px-4 py-2 rounded-md"
-        >
-          Save Changes
-        </button>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <CancelBtn />
+          <button
+            onClick={handleSubmit}
+            className="bg-lilac  hover:opacity-50 text-white  px-4 py-2 rounded-lg"
+          >
+            Save Changes
+          </button>
+        </div>
       </div>
     </div>
   );
