@@ -13,7 +13,7 @@ export default function Form() {
 
   const router = useRouter();
 
-  const { editPost } = useEditPost(id);
+  const { editPost, loading, error } = useEditPost(id);
   const { deletePost } = useDeletePost();
   const { getData } = useFetchEdit();
 
@@ -121,24 +121,33 @@ export default function Form() {
           onChange={handleChange}
         />
       </div>
-      <div className="flex flex-col-reverse gap-4 sm:flex-row sm:justify-between sm:gap-2">
-        <button
-          type="button"
-          className="bg-red hover:opacity-50 text-white px-4 py-2 rounded-lg"
-          onClick={handleDelete}
-        >
-          Delete
-        </button>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <CancelBtn />
+      {error && <p className="text-red-500">Somenthing went wrong</p>}
+      {!loading && (
+        <div className="flex flex-col-reverse gap-4 sm:flex-row sm:justify-between sm:gap-2">
           <button
-            onClick={handleSubmit}
-            className="bg-lilac  hover:opacity-50 text-white  px-4 py-2 rounded-lg"
+            type="button"
+            className="bg-red hover:opacity-50 text-white px-4 py-2 rounded-lg"
+            onClick={handleDelete}
           >
-            Save Changes
+            Delete
           </button>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <CancelBtn />
+            <button
+              onClick={handleSubmit}
+              className="bg-lilac  hover:opacity-50 text-white  px-4 py-2 rounded-lg"
+            >
+              Save Changes
+            </button>
+          </div>
         </div>
-      </div>
+      )}
+      {loading && (
+        <div className="flex items-center justify-center">
+          {" "}
+          <p>Pending...</p>{" "}
+        </div>
+      )}
     </div>
   );
 }
