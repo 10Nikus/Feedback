@@ -78,15 +78,23 @@ export default function Form() {
           onChange={handleChange}
         />
       </div>
-      <div className="flex flex-col-reverse gap-4 sm:flex-row sm:justify-end sm:gap-2">
-        <CancelBtn />
-        <button
-          className="bg-lilac text-white px-4 py-2 rounded-md"
-          onClick={handleSubmit}
-        >
-          Add Feedback
-        </button>
-      </div>
+      {error && <p className="text-red">Sth went wrong</p>}
+      {!loading && (
+        <div className="flex flex-col-reverse gap-4 sm:flex-row sm:justify-end sm:gap-2">
+          <CancelBtn />
+          <button
+            className="bg-lilac text-white px-4 py-2 rounded-md"
+            onClick={handleSubmit}
+          >
+            Add Feedback
+          </button>
+        </div>
+      )}
+      {loading && (
+        <div className="flex items-center justify-center">
+          <p>Pending...</p>
+        </div>
+      )}
     </div>
   );
 }
