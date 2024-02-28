@@ -68,12 +68,12 @@ export default function Roadmap() {
         </div>
         <ul className="p-3">
           <RoadmapElement
-            color="#3F51B5"
+            color="#FF9800"
             title="Planned"
             count={numData.PLANNED.length}
           />
           <RoadmapElement
-            color="#FFEB3B"
+            color="#9C27B0"
             title="InProgress"
             count={numData.INPROGRESS.length}
           />

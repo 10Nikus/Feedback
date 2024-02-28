@@ -65,7 +65,7 @@ export default function Form() {
   }
 
   return (
-    <div className="bg-white p-10 rounded-md  flex flex-col gap-8">
+    <div className="bg-white p-10 rounded-md  flex flex-col gap-6 ">
       <h2 className="font-bold text-xl">Editing '{title}' </h2>
       <div>
         <h1 className="font-bold">Feedback Title</h1>
@@ -144,8 +144,7 @@ export default function Form() {
       )}
       {loading && (
         <div className="flex items-center justify-center">
-          {" "}
-          <p>Pending...</p>{" "}
+          <p>Pending...</p>
         </div>
       )}
     </div>
