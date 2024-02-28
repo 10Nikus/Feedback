@@ -22,6 +22,7 @@ export default function Form() {
     newTitle: "",
     newCategory: "",
     newDescription: "",
+    status: "",
   });
 
   useEffect(() => {
@@ -32,6 +33,7 @@ export default function Form() {
         newTitle: data.title,
         newCategory: data.category,
         newDescription: data.description,
+        status: data.status,
       }));
       setTitle(data.title);
     };
@@ -90,6 +92,21 @@ export default function Form() {
           <option value="ux">UX</option>
           <option value="enhancement">Enhancement</option>
           <option value="bug">Bug</option>
+        </select>
+      </div>
+      <div>
+        <h1 className="font-bold">Update Status</h1>
+        <p>Change feedback state</p>
+        <select
+          className="bg-slate-200 w-full py-2 px-1 rounded-md"
+          name="status"
+          value={data.status}
+          onChange={handleChange}
+        >
+          <option value="suggestion">Suggestion</option>
+          <option value="planned">Planned</option>
+          <option value="in-progress">In-progress</option>
+          <option value="live">Live</option>
         </select>
       </div>
       <div>

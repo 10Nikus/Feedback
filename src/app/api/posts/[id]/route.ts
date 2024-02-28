@@ -16,6 +16,7 @@ export async function PUT(
     title: z.string().min(3).max(50),
     description: z.string().min(4).max(250),
     category: z.enum(["feature", "enhancement", "bug", "ui", "ux"]),
+    status: z.enum(["suggestion", "planned", "in-progress", "live"]),
   });
 
   if (!schema.safeParse(jsonBody)) {
@@ -26,9 +27,15 @@ export async function PUT(
     newCategory: category,
     newTitle: title,
     newDescription: description,
+    status,
   } = jsonBody;
 
-  await Feedback.findByIdAndUpdate(id, { category, title, description });
+  await Feedback.findByIdAndUpdate(id, {
+    category,
+    title,
+    description,
+    status,
+  });
   return NextResponse.json({ message: "Feedback updated" });
 }
 
