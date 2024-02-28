@@ -1,5 +1,5 @@
 import dbConnect from "@/app/lib/db";
-import { Feedback } from "@/app/models/feedback";
+import { Feedback } from "@/models/feedback";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 

@@ -1,7 +1,7 @@
 "use client";
 
-import useFetch from "@/app/hooks/UseFetch";
-import useFilter from "@/app/hooks/UseFilter";
+import useFetch from "@/hooks/UseFetch";
+import useFilter from "@/hooks/UseFilter";
 import { useEffect, useState } from "react";
 import Button from "./SidebarButton";
 import Link from "next/link";

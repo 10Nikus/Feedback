@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import UseAddComment from "@/app/hooks/UseAddComment";
+import UseAddComment from "@/hooks/UseAddComment";
 import { commentType } from "@/types/commentType";
 
 export default function AddComent({

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import CancelBtn from "./CancelBtn";
 import { useRouter } from "next/navigation";
-import useAddPost from "@/app/hooks/UseAddPost";
+import useAddPost from "@/hooks/UseAddPost";
 import { addDataType } from "@/types/addType";
 
 export default function Form() {

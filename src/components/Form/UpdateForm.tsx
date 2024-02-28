@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import CancelBtn from "./CancelBtn";
 import { useParams, useRouter } from "next/navigation";
-import useEditPost from "@/app/hooks/UseAddReply";
-import useDeletePost from "@/app/hooks/UseDelete";
-import useFetchEdit from "@/app/hooks/UseFetchEdit";
+import useEditPost from "@/hooks/UseAddReply";
+import useDeletePost from "@/hooks/UseDelete";
+import useFetchEdit from "@/hooks/UseFetchEdit";
 import { editDataType } from "@/types/editType";
 
 export default function Form() {

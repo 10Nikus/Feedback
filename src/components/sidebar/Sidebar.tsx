@@ -3,9 +3,9 @@
 import Link from "next/link";
 import Button from "./SidebarButton";
 import RoadmapElement from "./RoadmapElement";
-import useFetch from "@/app/hooks/UseFetch";
+import useFetch from "@/hooks/UseFetch";
 import { useEffect, useState } from "react";
-import UseFilter from "@/app/hooks/UseFilter";
+import UseFilter from "@/hooks/UseFilter";
 import { feedbackType } from "@/types/feedbackType";
 
 export default function Roadmap() {

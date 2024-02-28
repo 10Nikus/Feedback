@@ -2,9 +2,9 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import useFetch from "@/app/hooks/UseFetch";
-import useFilter from "@/app/hooks/UseFilter";
-import UseSort from "@/app/hooks/UseSort";
+import useFetch from "@/hooks/UseFetch";
+import useFilter from "@/hooks/UseFilter";
+import UseSort from "@/hooks/UseSort";
 import { useRouter } from "next/navigation";
 import { setNumber } from "@/lib/features/slice/feedbuckNumberSlice";
 import FeedbackItemListSkeleton from "../skeleton/FeedbackItemListSkeleton";

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import useFilter from "@/app/hooks/UseFilter";
-import useFetch from "@/app/hooks/UseFetch";
+import useFilter from "@/hooks/UseFilter";
+import useFetch from "@/hooks/UseFetch";
 import RoadmapItem from "./RoadmapItem";
 import { feedbackType } from "@/types/feedbackType";
 

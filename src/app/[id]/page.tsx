@@ -8,7 +8,7 @@ import Comment from "@/components/FeedbackDetails/Comments";
 import AddComent from "@/components/FeedbackDetails/AddComments";
 import { useEffect, useState } from "react";
 import ReplyToComment from "@/components/FeedbackDetails/ReplyToComment";
-import useFetch from "../hooks/UseFetch";
+import useFetch from "../../hooks/UseFetch";
 import FeedbackItemDetailsSkeleton from "@/components/skeleton/FeedbackItemDetailsSkeleton";
 import FeedbackListItemMobile from "@/components/FeedbackList/FeedbackListItemMobile";
 
